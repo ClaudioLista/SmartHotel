@@ -1,14 +1,13 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.Utente;
 
 public interface UtenteDAO {
 	public int save(Utente utente);
 	
-	public int update(Utente utente);
+	public int update(String email, int tipo);
 	public int updatePassword(String email, String password);
 	
 	public void delete (String idUtente);

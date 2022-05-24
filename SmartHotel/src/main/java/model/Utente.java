@@ -2,8 +2,7 @@ package model;
 
 import java.util.*;
 
-public abstract class Utente {
-
+public class Utente {
 		
 		private String idUtente;
 		private String email;
@@ -14,12 +13,12 @@ public abstract class Utente {
 		private String telefono;
 		private String indirizzo;
 		private int tipoUtente;
+
+		public Utente() {
+		}
 		
-
-
 		public Utente(String idUtente, String email, String password, String nome, String cognome, Date dataNascita,
 				String telefono, String indirizzo, int tipoUtente) {
-			super();
 			this.idUtente = idUtente;
 			this.email = email;
 			this.password = password;
@@ -29,22 +28,6 @@ public abstract class Utente {
 			this.telefono = telefono;
 			this.indirizzo = indirizzo;
 			this.tipoUtente = tipoUtente;
-		}
-
-		public Utente() {
-			
-		}
-
-		public Utente(String idUtente, String email, String password, String nome, String cognome, Date dataNascita,
-				String telefono) {
-			super();
-			this.idUtente = idUtente;
-			this.email = email;
-			this.password = password;
-			this.nome = nome;
-			this.cognome = cognome;
-			this.dataNascita = dataNascita;
-			this.telefono = telefono;
 		}
 		
 		@Override
