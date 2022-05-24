@@ -17,8 +17,8 @@ public class CameraDAOImpl implements CameraDAO {
 		PreparedStatement ps = null;
 
 		try (Connection conn = DriverManagerConnectionPool.getConnection();) {
-			ps = conn.prepareStatement(
-					"insert into  camera(idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo) values (?,?,?,?,?,?,?,?);");
+			ps = conn.prepareStatement("INSERT INTO camera(idCamera,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo) "
+					+ "VALUES (?,?,?,?,?,?,?,?);");
 			ps.setString(1, camera.getIdCamera());
 			ps.setInt(2, camera.getNumStanza());
 			ps.setBoolean(3, camera.isPrenotabile());
@@ -39,8 +39,8 @@ public class CameraDAOImpl implements CameraDAO {
 	@Override
 	public int update(Camera camera) {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
-			PreparedStatement ps = con.prepareStatement("Update camera set idCAMERA=?, numStanza=?, prenotabile=?, tipo=?, numPosti=?, dimensione=? "
-					+ ", descrizione=?, prezzo=? WHERE idCAMERA=?;");
+			PreparedStatement ps = con.prepareStatement("UPDATE camera SET idCamera=?, numStanza=?, prenotabile=?, tipo=?, numPosti=?, dimensione=? "
+					+ ", descrizione=?, prezzo=? WHERE idCamera=?;");
 			ps.setString(1, camera.getIdCamera());
 			ps.setInt(2, camera.getNumStanza());
 			ps.setBoolean(3, camera.isPrenotabile());
@@ -90,7 +90,7 @@ public class CameraDAOImpl implements CameraDAO {
 	public ArrayList<Camera> list() {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 
-			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera ;");
+			PreparedStatement ps = con.prepareStatement("SELECT idCamera,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo FROM camera ;");
 			ArrayList<Camera> listaUtente = new ArrayList<Camera>();
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -118,7 +118,7 @@ public class CameraDAOImpl implements CameraDAO {
 		PreparedStatement ps = null;
 
 		try (Connection conn = DriverManagerConnectionPool.getConnection();) {
-			ps = conn.prepareStatement("UPDATE CAMERA set  prezzo=? where numStanza=? ;");
+			ps = conn.prepareStatement("UPDATE camera SET  prezzo=? WHERE numStanza=? ;");
 			ps.setDouble(1, prezzo);
 			ps.setInt(2, numCamera);
 
@@ -134,7 +134,8 @@ public class CameraDAOImpl implements CameraDAO {
 	public Camera get(String idCamera) {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 
-			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera Where idCAMERA=?;");
+			PreparedStatement ps = con.prepareStatement("SELECT idCamera,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo "
+					+ "FROM camera WHERE idCamera=?;");
 			ps.setString(1, idCamera);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -161,7 +162,8 @@ public class CameraDAOImpl implements CameraDAO {
 	public Camera getbyNumStanza(int numStanza) {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 
-			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera Where numStanza=?;");
+			PreparedStatement ps = con.prepareStatement("SELECT idCamera,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo "
+					+ "FROM camera WHERE numStanza=?;");
 			ps.setInt(1, numStanza);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
