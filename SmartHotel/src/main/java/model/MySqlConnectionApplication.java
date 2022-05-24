@@ -1,8 +1,17 @@
-/*package model;
 
-import org.framework.spr
-public class MySqlConnectionApplication implements CommandLineRunner {
-	
-	
-	
-}*/
+/*
+package model;
+
+import org.springframework.boot.SpringApplication;
+
+@SpringBootApplication
+public class MySqlConnectionApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+*/

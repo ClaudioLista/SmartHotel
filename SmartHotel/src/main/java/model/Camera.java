@@ -6,7 +6,7 @@ public class Camera {
 	private String tipo;
 	private int numPosti;
 	private int dimensione;
-	private int prezzo; //tipo prezzo
+	private double prezzo; //tipo prezzo
 	private int numStanza;
 	private boolean prenotabile;
 	private String descrizione;
@@ -18,7 +18,7 @@ public class Camera {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Camera(String idCamera, String tipo, int numPosti, int dimensione, int prezzo, int numStanza, String descrizione) {
+	public Camera(String idCamera, String tipo, int numPosti, int dimensione, double prezzo, int numStanza, String descrizione) {
 		super();
 		this.idCamera = idCamera;
 		this.tipo = tipo;
@@ -61,10 +61,10 @@ public class Camera {
 	public void setDimensione(int dimensione) {
 		this.dimensione = dimensione;
 	}
-	public int getPrezzo() {
+	public double getPrezzo() {
 		return prezzo;
 	}
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
 	public int getNumStanza() {

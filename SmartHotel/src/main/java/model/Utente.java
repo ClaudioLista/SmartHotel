@@ -13,8 +13,23 @@ public abstract class Utente {
 		private Date dataNascita;
 		private String telefono;
 		private String indirizzo;
+		private int tipoUtente;
 		
 
+
+		public Utente(String idUtente, String email, String password, String nome, String cognome, Date dataNascita,
+				String telefono, String indirizzo, int tipoUtente) {
+			super();
+			this.idUtente = idUtente;
+			this.email = email;
+			this.password = password;
+			this.nome = nome;
+			this.cognome = cognome;
+			this.dataNascita = dataNascita;
+			this.telefono = telefono;
+			this.indirizzo = indirizzo;
+			this.tipoUtente = tipoUtente;
+		}
 
 		public Utente() {
 			
@@ -36,7 +51,7 @@ public abstract class Utente {
 		public String toString() {
 			return "Utente [idUtente=" + idUtente + ", email=" + email + ", password=" + password + ", nome=" + nome
 					+ ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", telefono=" + telefono
-					+ ", indirizzo=" + indirizzo + "]";
+					+ ", indirizzo=" + indirizzo + ", tipoUtente=" + tipoUtente + "]";
 		}
 		
 		
@@ -89,5 +104,13 @@ public abstract class Utente {
 
 		public void setIndirizzo(String indirizzo) {
 			this.indirizzo = indirizzo;
+		}
+
+		public int getTipoUtente() {
+			return tipoUtente;
+		}
+
+		public void setTipoUtente(int tipoUtente) {
+			this.tipoUtente = tipoUtente;
 		}
 	}
