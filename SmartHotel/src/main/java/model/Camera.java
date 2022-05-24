@@ -49,10 +49,10 @@ public class Camera {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public int getNumOspiti() {
+	public int getNumPosti() {
 		return numPosti;
 	}
-	public void setNumOspiti(int numPosti) {
+	public void setNumPosti(int numPosti) {
 		this.numPosti = numPosti;
 	}
 	public int getDimensione() {
