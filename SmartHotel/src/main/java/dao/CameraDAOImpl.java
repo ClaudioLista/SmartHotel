@@ -6,6 +6,7 @@ import model.Camera;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.DriverManagerConnectionPool;
@@ -49,13 +50,45 @@ public class CameraDAOImpl implements CameraDAO {
 
 	@Override
 	public ArrayList<Camera> list() {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+
+			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera ;");
+			ArrayList<Camera> listaUtente = new ArrayList<Camera>();
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Camera c = new Camera();
+
+				c.setIdCamera(rs.getString(1));
+				c.setNumStanza(rs.getInt(2));
+				c.setPrenotabile(rs.getBoolean(3));
+				c.setTipo(rs.getString(4));
+				c.setNumOspiti(rs.getInt(5));
+				c.setDimensione(rs.getInt(6));
+				c.setDescrizione(rs.getString(7));
+				c.setPrezzo(rs.getDouble(8));
+
+				listaUtente.add(c);
+			}
+			return listaUtente;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
-	public int updatePrezzo(double prezzo) {
-		// TODO Auto-generated method stub
+	public int updatePrezzo(int numCamera, double prezzo) {
+		PreparedStatement ps = null;
+
+		try (Connection conn = DriverManagerConnectionPool.getConnection();) {
+			ps = conn.prepareStatement("UPDATE CAMERA set  prezzo=? where numStanza=? ;");
+			ps.setDouble(1, prezzo);
+			ps.setInt(2, numCamera);
+
+			int rs = ps.executeUpdate();
+			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -67,13 +100,55 @@ public class CameraDAOImpl implements CameraDAO {
 
 	@Override
 	public Camera get(String idCamera) {
-		// TODO Auto-generated method stub
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+
+			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera Where idCAMERA=?;");
+			ps.setString(1, idCamera);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Camera c = new Camera();
+				c.setIdCamera(rs.getString(1));
+				c.setNumStanza(rs.getInt(2));
+				c.setPrenotabile(rs.getBoolean(3));
+				c.setTipo(rs.getString(4));
+				c.setNumOspiti(rs.getInt(5));
+				c.setDimensione(rs.getInt(6));
+				c.setDescrizione(rs.getString(7));
+				c.setPrezzo(rs.getDouble(8));
+				return c;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 		return null;
-	}
+	}	
 
 	@Override
 	public Camera getbyNumStanza(int numStanza) {
-		// TODO Auto-generated method stub
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+
+			PreparedStatement ps = con.prepareStatement("select idCAMERA,numStanza,prenotabile,tipo,numPosti,dimensione,descrizione,prezzo from camera Where numStanza=?;");
+			ps.setInt(1, numStanza);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Camera c = new Camera();
+				c.setIdCamera(rs.getString(1));
+				c.setNumStanza(rs.getInt(2));
+				c.setPrenotabile(rs.getBoolean(3));
+				c.setTipo(rs.getString(4));
+				c.setNumOspiti(rs.getInt(5));
+				c.setDimensione(rs.getInt(6));
+				c.setDescrizione(rs.getString(7));
+				c.setPrezzo(rs.getDouble(8));
+				return c;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 		return null;
 	}
 
