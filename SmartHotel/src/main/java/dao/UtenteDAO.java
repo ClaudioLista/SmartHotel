@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.Utente;
 
 public interface UtenteDAO {
+	
 	public int save(Utente utente);
 	
 	public int update(String email, int tipo);
@@ -13,8 +14,8 @@ public interface UtenteDAO {
 	public int delete (String idUtente);
 	
 	public Utente getbyID(String idUtente);
-	public Utente getbyemail(String email);
-	public Utente getbykey (String email, String password);
+	public Utente getbyEmail(String email);
+	public Utente getbyKey (String email, String password);
 	
 	public ArrayList<Utente> list();	
 	
