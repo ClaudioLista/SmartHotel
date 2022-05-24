@@ -16,6 +16,7 @@ import model.Utente;
 
 public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
+		//commento di prova Roberta
 	@Override	
 	public synchronized int save(Prenotazione prenotazione) {
 		PreparedStatement ps = null;
