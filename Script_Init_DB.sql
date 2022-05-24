@@ -8,6 +8,7 @@ create table camera
     numPosti    int          not null,
     dimensione  int          not null,
     descrizione varchar(500) not null,
+    prezzo      double       not null,
     constraint CAMERA_idCAMERA_uindex
         unique (idCAMERA),
     constraint CAMERA_numStanza_uindex
@@ -16,15 +17,16 @@ create table camera
 
 create table utente
 (
-    idUTENTE    varchar(10)               not null
+    idUTENTE    varchar(10)  not null
         primary key,
-    email       varchar(60)               not null,
-    password    varchar(45)               not null,
-    nome        varchar(70)               not null,
-    cognome     varchar(70)               not null,
-    dataNascita date                      not null,
-    telefono    varchar(15)               not null,
-    tipoUtente  enum ('cliente', 'admin') not null,
+    email       varchar(60)  not null,
+    password    varchar(45)  not null,
+    nome        varchar(70)  not null,
+    cognome     varchar(70)  not null,
+    dataNascita date         not null,
+    telefono    varchar(15)  not null,
+    indirizzo   varchar(100) not null,
+    tipoUtente  int          not null,
     constraint UTENTE_email_uindex
         unique (email),
     constraint UTENTE_idUTENTE_uindex
