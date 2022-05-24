@@ -9,8 +9,8 @@ public class Prenotazione {
 	private Date dataPrenotazione;
 	private Date checkIn;
 	private Date checkOut;
-	private Camera camera;
-	private Utente intestatario;
+	private String camera;
+	private String intestatario;
 	private int numOspiti;
 	
 	
@@ -21,8 +21,8 @@ public class Prenotazione {
 	
 	
 	
-	public Prenotazione(String idPrenotazione, Date dataPrenotazione, Date checkIn, Date checkOut, Camera camera,
-			Utente intestatario, int numOspiti) {
+	public Prenotazione(String idPrenotazione, Date dataPrenotazione, Date checkIn, Date checkOut, String camera,
+			String intestatario, int numOspiti) {
 		super();
 		this.idPrenotazione = idPrenotazione;
 		this.dataPrenotazione = dataPrenotazione;
@@ -84,22 +84,22 @@ public class Prenotazione {
 	}
 
 
-	public Camera getCamera() {
+	public String getCamera() {
 		return camera;
 	}
 
 
-	public void setCamera(Camera camera) {
+	public void setCamera(String camera) {
 		this.camera = camera;
 	}
 
 
-	public Utente getIntestatario() {
+	public String getIntestatario() {
 		return intestatario;
 	}
 
 
-	public void setIntestatario(Utente intestatario) {
+	public void setIntestatario(String intestatario) {
 		this.intestatario = intestatario;
 	}
 

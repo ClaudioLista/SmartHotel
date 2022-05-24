@@ -11,7 +11,7 @@ public interface UtenteDAO {
 	public int update(Utente utente);
 	public int updatePassword(String email, String password);
 	
-	public void delete (String idUtente);
+	public int delete (String idUtente);
 	
 	public Utente getbyID(String idUtente);
 	public Utente getbyemail(String email);
