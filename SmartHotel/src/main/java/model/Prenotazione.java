@@ -92,7 +92,10 @@ public class Prenotazione {
 	public void setCamera(Camera camera) {
 		this.camera = camera;
 	}
-
+	
+	public void setCameraId(String idCamera) {
+		this.camera.setIdCamera(idCamera);
+	}
 
 	public Utente getIntestatario() {
 		return intestatario;
