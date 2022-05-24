@@ -8,7 +8,7 @@ public interface UtenteDAO {
 	
 	public int save(Utente utente);
 	
-	public int update(String email, int tipo);
+	public int updateTipo(String email, int tipoUtente);
 	public int updatePassword(String email, String password);
 	
 	public int delete (String idUtente);

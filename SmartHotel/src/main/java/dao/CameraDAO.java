@@ -12,10 +12,10 @@ public interface CameraDAO {
 	public int updatePrezzo(int numCamera, double prezzo);
 	
 	public int delete (String idCamera);
-	public int deletebyNumStanza(int numStanza);
+	public int deletebyNumCamera(int numCamera);
 	
 	public Camera get(String idCamera);
-	public Camera getbyNumStanza(int numStanza);
+	public Camera getbyNumCamera(int numCamera);
 	
 	public ArrayList<Camera> list();
 	

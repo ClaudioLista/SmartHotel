@@ -7,7 +7,7 @@ public class Camera {
 	private int numPosti;
 	private int dimensione;
 	private double prezzo;
-	private int numStanza;
+	private int numCamera;
 	private boolean prenotabile;
 	private String descrizione;
 
@@ -16,14 +16,14 @@ public class Camera {
 		
 	}
 	
-	public Camera(String idCamera, String tipo, int numPosti, int dimensione, double prezzo, int numStanza, String descrizione) {
+	public Camera(String idCamera, String tipo, int numPosti, int dimensione, double prezzo, int numCamera, String descrizione) {
 		super();
 		this.idCamera = idCamera;
 		this.tipo = tipo;
 		this.numPosti = numPosti;
 		this.dimensione = dimensione;
 		this.prezzo = prezzo;
-		this.numStanza = numStanza;
+		this.numCamera = numCamera;
 		this.descrizione = descrizione;
 		this.prenotabile = true;
 	}
@@ -32,7 +32,7 @@ public class Camera {
 	@Override
 	public String toString() {
 		return "Camera [idCamera=" + idCamera + ", tipo=" + tipo + ", numPosti=" + numPosti + ", dimensione="
-				+ dimensione + ", prezzo=" + prezzo + ", numStanza=" + numStanza+ ", descrizione=" + descrizione + "]";
+				+ dimensione + ", prezzo=" + prezzo + ", numCamera=" + numCamera+ ", descrizione=" + descrizione + "]";
 	}
 
 	public String getIdCamera() {
@@ -65,11 +65,11 @@ public class Camera {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
-	public int getNumStanza() {
-		return numStanza;
+	public int getNumCamera() {
+		return numCamera;
 	}
-	public void setNumStanza(int numStanza) {
-		this.numStanza = numStanza;
+	public void setNumCamera(int numCamera) {
+		this.numCamera = numCamera;
 	}
 	public String getDescrizione() {
 		return descrizione;
