@@ -13,5 +13,5 @@
 	
 	
 	<ctx:annotation-config></ctx:annotation-config>
-	<ctx:component-scan base-package="com.teamSAD.SmartHotel"></ctx:component-scan>
+	<ctx:component-scan base-package="controller"></ctx:component-scan>
 </beans>

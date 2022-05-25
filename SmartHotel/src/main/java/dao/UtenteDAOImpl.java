@@ -159,6 +159,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 			if (rs.next()) {
 				Utente p = new Utente();
 				
+				System.out.println("utente trovato");
+				
 				p.setIdUtente(rs.getString(1));
 				p.setEmail(rs.getString(2));
 				p.setPassword(rs.getString(3));
