@@ -1,19 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Registrazione</title>
-</head>
-<body>
-	
-	
-	<% 	String pageTitle= "Registrazione";
+<% 	String pageTitle= "Login";
    	request.setAttribute("pageTitle", pageTitle);%>
 
+<jsp:include page="Header.jsp" />
 
-<div class="container">
+<div class="container" style="padding-top: 180px">
 	<p>
 		<span><%= pageTitle %></span>
 	</p>
@@ -132,6 +122,5 @@
 </div>
 <!--FINE CONTAINER CENTRALE-->
 	
-</body>
-</html>
+<jsp:include page="Footer.jsp" />
 

@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class LoginController {
 			throws ServletException, IOException {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("LoginAvvenuto.jsp");
+		mv.setViewName("Homepage.jsp");
 		
 		String email = request.getParameter("email");
 		if (email == null)
@@ -59,6 +60,10 @@ public class LoginController {
 							System.out.println("Login fallito");
 						}
 						else {
+							HttpSession sessione = request.getSession();
+							
+							sessione.setAttribute("utente", utente);
+							
 							
 							mv.addObject("utente", utente);
 							mv.addObject("nomeUtente", utente.getNome() + " " + utente.getCognome());

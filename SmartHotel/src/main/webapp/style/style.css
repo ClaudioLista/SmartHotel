@@ -1,0 +1,438 @@
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+  
+  
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4b4c4d;
+    text-align: left;
+}
+
+.container {
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+nav {
+    background-color: white;
+    -webkit-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+    -moz-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+    box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+}
+
+nav .navbar-brand {
+    padding-left: 10%;
+}
+
+nav .navbar-brand img{
+    background-color: white;
+    border-radius: 50%;
+}
+
+#navbarText .navbar-text {
+    display: block ruby;
+    padding-right: 10%;
+}
+
+#navbarText a {
+    margin: 15px;
+    text-decoration: none;
+    color: #4b4c4d;
+}
+
+#navbarText .btn {
+    border-radius: 10px;
+    border: none;
+    color: white;
+    box-shadow: 3 4px 6px 3 rgba(80, 61, 94, 2);
+}
+
+#navbarText .btn:hover {
+    background-color: #fa6661;
+}
+
+#navbarText .nav-item {
+    line-height: 1;
+    display: inline-block;
+    color:#fa6661;
+    text-decoration:none;
+    cursor: pointer;
+    padding: 10px 0 10px 0;
+}
+
+#navbarText .nav-item:after{
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    background-color: #fa6661;
+    transition: width .5s ease-in-out;
+    max-width: 130px;
+}
+
+#navbarText .nav-item:hover:after, .nav-item:focus:after{
+    width: 100%;
+}
+
+#navbarText .login:hover{
+    color: #4b4c4d;
+    font-weight: bold;
+}
+
+#date{
+	margin: 0;
+}
+
+#container-centrale {
+    background: #f1f7fc;
+    padding: 4% 20% 4% 20%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #ccc;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    -webkit-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+    -moz-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+    box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+}
+
+#container-centrale-back {
+    background: url("../img/logo-unisa.png") no-repeat center;
+}
+
+footer .social {
+    text-align: center;
+}
+
+footer .social a:hover {
+    font-weight: bold;
+}
+  
+footer .social a {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 8px;
+    color: inherit;
+    opacity: 0.75;
+}
+
+.footer-basic {
+    padding-top: 50px;
+    margin-top: 60px 1px solid;
+    color: #4b4c4d;
+}
+  
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    
+}
+  
+.footer-basic li {
+    padding: 0 10px;
+}
+  
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+  
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+  
+.footer-basic .social {
+    text-align: center;
+    padding-bottom: 25px;
+}
+  
+.footer-basic .social > a {
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 8px;
+    color: inherit;
+    opacity: 0.75;
+}
+  
+.footer-basic .social > a:hover {
+    opacity: 0.9;
+}
+  
+.footer-basic .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 0;
+}
+
+#calendar-background .calendar {
+  width: auto;
+  max-width: 500px;
+  margin: auto;
+  transition: opacity 1s;
+  transition: 1s;
+}
+
+#calendar-background .calendar:hover {
+    transform: scale(1.5);
+    opacity: 0;
+}
+
+#calendar-background .calendar:active {
+    opacity: 0;
+}
+
+.calendar h5 {
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 7px 60px 7px 60px;
+  background-color: #fa6661;
+  text-transform: uppercase;
+}
+
+.calendar h2 {
+  color: #4b4c4d;
+  font-size: 125px;
+  font-weight: 900;
+  text-align: center;
+  width: auto;
+  max-width: 500px;
+  background-color: white;
+  padding-top: 33px;
+  padding-bottom: 33px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+}
+
+#container-tabelle .table {
+    background: white;
+    color: #4b4c4d;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+#container-tabelle .table td, #container-tabelle .table th {
+    border-top: none;
+}
+
+#container-centrale .table thead {
+    color: black;
+}
+
+#container-centrale .table tr:hover {
+    background: #dab3b2;
+}
+
+#container-centrale #registrazione {
+    padding: 3%;
+}
+
+#container-centrale #registrazione form {
+    background-position: center;
+}
+
+#container-centrale #registrazione .row {
+    display: ruby block;
+    background-position: center;
+}
+
+#container-centrale #registrazione label {
+    width: 15%;
+}
+
+#container-centrale #registrazione .form-control {
+    width: 350px;
+}
+
+#container-centrale #registrazione .form-check-label {
+    width: 100%;
+}
+
+#container-centrale .btn:hover {
+    background-color: #fa6661;
+    color: #4b4c4d;
+}
+
+
+.register-form form.custom-form {
+    padding: 55px 0 55px 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    font: bold 14px sans-serif;
+    text-align: center;
+    margin: 50px;
+    color: #333;
+}
+  
+.register-form .custom-form h1 {
+    display: inline-block;
+    color: #4c565e;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 10px 15px;
+    margin-bottom: 60px;
+    border-bottom: 2px solid grey;
+}
+
+#regisCol{
+    width: auto;
+    max-width: auto;
+}
+  
+.login-clean {
+    padding: 30px 0;
+  }
+  
+  .login-clean form {
+    max-width: 320px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 4px;
+    color: #505e6c;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .login-clean .illustration {
+    text-align: center;
+    padding: 0 0 20px;
+    font-size: 100px;
+    color: grey;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .login-clean form .form-control {
+    background: #f7f9fc;
+    border: none;
+    border-bottom: 1px solid #dfe7f1;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 8px;
+    height: 42px;
+  }
+  
+  .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+  }
+  
+  .navbar .navbar-text .btn-group .dropdown-menu .dropdown-item:active {
+      background-color: #fa6661;
+  }
+  
+ .register-form .custom-form .form-group .label-column {
+      padding-top: 10px;
+  }
+  
+  #snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #4b4c4d; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 90%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+
+@media (min-width: 992px) {
+    #navbarText .navbar-nav {
+        padding-left: 30%;
+    }
+}
+
+@media (min-width: 768px) {
+
+}

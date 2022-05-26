@@ -23,7 +23,7 @@ public class RegistrazioneController {
 			throws ServletException, IOException {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("LoginAvvenuto.jsp");
+		mv.setViewName("login.jsp");
 		
 		System.out.println("TEST REGISTRAZIONE");
 

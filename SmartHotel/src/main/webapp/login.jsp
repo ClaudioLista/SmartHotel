@@ -1,17 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Login</title>
-</head>
-<body>
-	
-	
-	<% 	String pageTitle= "Login";
+
+<% 	String pageTitle= "Login";
    	request.setAttribute("pageTitle", pageTitle);%>
 
+<jsp:include page="Header.jsp" />
 
 <div class="container" style="padding-top: 180px">
 	<p>
@@ -24,6 +15,9 @@
 	<div class="login-clean">
 		<form method="POST" action="login">
 			<h2 class="sr-only">Login Form</h2>
+			<div class="illustration">
+				<img src="img/profilo.png" width="50%">
+			</div>
 			<div class="form-group">
 				<input class="form-control" type="email" name="email" id="email"
 					placeholder="Email" onchange="verifyL(this.value, this.id)" />
@@ -42,8 +36,4 @@
 </div>
 <!--FINE CONTAINER CENTRALE-->
 
-	
-	
-</body>
-</html>
-
+<jsp:include page="Footer.jsp" />
