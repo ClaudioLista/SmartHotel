@@ -53,12 +53,12 @@ public class UtenteDAOImpl implements UtenteDAO {
 	}
 
 	@Override
-	public synchronized int updatePassword(String email, String password) {
+	public synchronized int updatePassword(String email, String newPassword) {
 		PreparedStatement ps = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement("UPDATE utente SET  password=?  WHERE email =? ;");
-			ps.setString(1, password);
+			ps.setString(1, newPassword);
 			ps.setString(2, email);
 			
 			int rs = ps.executeUpdate();
