@@ -20,7 +20,7 @@ public class CameraDAOImpl implements CameraDAO {
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
 			ps = conn.prepareStatement("INSERT INTO camera(idCamera,tipo,numPosti,dimensione,prezzo,numCamera,prenotabile,descrizione) "
 					+ "VALUES (?,?,?,?,?,?,?,?);");
-			ps.setString(1, camera.getIdCamera());
+			ps.setInt(1, camera.getIdCamera());
 			ps.setString(2, camera.getTipo());
 			ps.setInt(3, camera.getNumPosti());
 			ps.setInt(4, camera.getDimensione());
@@ -43,7 +43,7 @@ public class CameraDAOImpl implements CameraDAO {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement("UPDATE camera SET idCamera=?, tipo=?, numPosti=?, dimensione=?, prezzo=?, numCamera=?, prenotabile=?,  "
 					+ "descrizione=? WHERE idCamera=?;");
-			ps.setString(1, camera.getIdCamera());
+			ps.setInt(1, camera.getIdCamera());
 			ps.setString(2, camera.getTipo());
 			ps.setInt(3, camera.getNumPosti());
 			ps.setInt(4, camera.getDimensione());
@@ -119,7 +119,7 @@ public class CameraDAOImpl implements CameraDAO {
 			if (rs.next()) {
 				Camera c = new Camera();
 				
-				c.setIdCamera(rs.getString(1));
+				c.setIdCamera(rs.getInt(1));
 				c.setTipo(rs.getString(2));
 				c.setNumPosti(rs.getInt(3));
 				c.setDimensione(rs.getInt(4));
@@ -149,7 +149,7 @@ public class CameraDAOImpl implements CameraDAO {
 			if (rs.next()) {
 				Camera c = new Camera();
 				
-				c.setIdCamera(rs.getString(1));
+				c.setIdCamera(rs.getInt(1));
 				c.setTipo(rs.getString(2));
 				c.setNumPosti(rs.getInt(3));
 				c.setDimensione(rs.getInt(4));
@@ -177,7 +177,7 @@ public class CameraDAOImpl implements CameraDAO {
 			while (rs.next()) {
 				Camera c = new Camera();
 
-				c.setIdCamera(rs.getString(1));
+				c.setIdCamera(rs.getInt(1));
 				c.setTipo(rs.getString(2));
 				c.setNumPosti(rs.getInt(3));
 				c.setDimensione(rs.getInt(4));

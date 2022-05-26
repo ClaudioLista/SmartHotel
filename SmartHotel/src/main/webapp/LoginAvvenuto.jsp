@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	${messaggio}
+	
+	${messaggio} <br>
+	BENVENUTO ${nomeUtente}
 
 </body>
 </html>

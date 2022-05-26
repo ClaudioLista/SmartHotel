@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Prenotazione {
 
-	private String idPrenotazione;
+	private int idPrenotazione;
 	private Date dataPrenotazione;
 	private Date checkIn;
 	private Date checkOut;
@@ -16,7 +16,7 @@ public class Prenotazione {
 		
 	}
 	
-	public Prenotazione(String idPrenotazione, Date dataPrenotazione, Date checkIn, Date checkOut, String camera,
+	public Prenotazione(int idPrenotazione, Date dataPrenotazione, Date checkIn, Date checkOut, String camera,
 			String intestatario, int numOspiti) {
 		super();
 		this.idPrenotazione = idPrenotazione;
@@ -34,10 +34,10 @@ public class Prenotazione {
 				+ checkOut + ", camera=" + camera + ", intestatario=" + intestatario + ", numOspiti=" + numOspiti + "]";
 	}
 
-	public String getIdPrenotazione() {
+	public int getIdPrenotazione() {
 		return idPrenotazione;
 	}
-	public void setIdPrenotazione(String idPrenotazione) {
+	public void setIdPrenotazione(int idPrenotazione) {
 		this.idPrenotazione = idPrenotazione;
 	}
 	public Date getDataPrenotazione() {

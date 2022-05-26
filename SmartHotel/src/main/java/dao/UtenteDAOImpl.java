@@ -1,14 +1,11 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-import model.Cliente;
 import model.DriverManagerConnectionPool;
 import model.Utente;
 
@@ -17,19 +14,20 @@ public class UtenteDAOImpl implements UtenteDAO {
 	@Override
 	public synchronized int save(Utente utente) {
 		PreparedStatement ps = null;
-
+		
+		System.out.println("UtenteDAO SAVE");
+		
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
-			ps = conn.prepareStatement("INSERT INTO  utente(idUtente,email,password,nome,cognome,dataNascita,telefono,indirizzo,tipoUtente) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?);");
-			ps.setString(1, utente.getIdUtente());
-			ps.setString(2, utente.getEmail());
-			ps.setString(3, utente.getPassword());
-			ps.setString(4, utente.getNome());
-			ps.setString(5, utente.getCognome());
-			ps.setDate(6, (Date) utente.getDataNascita());
-			ps.setString(7, utente.getTelefono());
-			ps.setString(8, utente.getIndirizzo());
-			ps.setInt(9, utente.getTipoUtente());
+			ps = conn.prepareStatement("INSERT INTO  utente(email,password,nome,cognome,dataNascita,telefono,indirizzo,tipoUtente) "
+					+ "VALUES (?,?,?,?,?,?,?,?);");
+			ps.setString(1, utente.getEmail());
+			ps.setString(2, utente.getPassword());
+			ps.setString(3, utente.getNome());
+			ps.setString(4, utente.getCognome());
+			ps.setDate(5, utente.getDataNascita());
+			ps.setString(6, utente.getTelefono());
+			ps.setString(7, utente.getIndirizzo());
+			ps.setInt(8, utente.getTipoUtente());
 				
 			int rs = ps.executeUpdate();
 			return rs;
@@ -98,7 +96,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 			if (rs.next()) {
 				Utente p = new Utente();
 				
-				p.setIdUtente(rs.getString(1));
+				p.setIdUtente(rs.getInt(1));
 				p.setEmail(rs.getString(2));
 				p.setPassword(rs.getString(3));
 				p.setNome(rs.getString(4));
@@ -128,7 +126,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 			if (rs.next()) {
 				Utente p = new Utente();
 				
-				p.setIdUtente(rs.getString(1));
+				p.setIdUtente(rs.getInt(1));
 				p.setEmail(rs.getString(2));
 				p.setPassword(rs.getString(3));
 				p.setNome(rs.getString(4));
@@ -161,7 +159,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 				
 				System.out.println("utente trovato");
 				
-				p.setIdUtente(rs.getString(1));
+				p.setIdUtente(rs.getInt(1));
 				p.setEmail(rs.getString(2));
 				p.setPassword(rs.getString(3));
 				p.setNome(rs.getString(4));
@@ -190,7 +188,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 			while (rs.next()) {
 				Utente p = new Utente();
 				
-				p.setIdUtente(rs.getString(1));
+				p.setIdUtente(rs.getInt(1));
 				p.setEmail(rs.getString(2));
 				p.setPassword(rs.getString(3));
 				p.setNome(rs.getString(4));

@@ -21,7 +21,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
 			ps = conn.prepareStatement("INSERT INTO prenotazione(idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti) "
 					+ "VALUES (?,?,?,?,?,?) ;");
-			ps.setString(1, prenotazione.getIdPrenotazione());
+			ps.setInt(1, prenotazione.getIdPrenotazione());
 			ps.setDate(2, (java.sql.Date) prenotazione.getDataPrenotazione());
 			ps.setDate(3, (java.sql.Date) prenotazione.getCheckIn());
 			ps.setDate(4, (java.sql.Date) prenotazione.getCheckOut());
@@ -43,7 +43,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement("UPDATE prenotazione SET idPrenotazione=?, dataPrenotazione=?, checkIn=?, checkOut=?, camera=?, "
 					+ "intestatario=?, numOspiti=? WHERE idPrenotazione=? ;");
-			ps.setString(1, prenotazione.getIdPrenotazione());
+			ps.setInt(1, prenotazione.getIdPrenotazione());
 			ps.setDate(2, (java.sql.Date) prenotazione.getDataPrenotazione());
 			ps.setDate(3, (java.sql.Date) prenotazione.getCheckIn());
 			ps.setDate(4, (java.sql.Date) prenotazione.getCheckOut());
@@ -134,7 +134,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			if (rs.next()) {
 				Prenotazione p = new Prenotazione();
 				
-				p.setIdPrenotazione(rs.getString(1));
+				p.setIdPrenotazione(rs.getInt(1));
 				p.setDataPrenotazione(rs.getDate(2));
 				p.setCheckIn(rs.getDate(3));
 				p.setCheckOut(rs.getDate(4));
@@ -164,7 +164,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			if (rs.next()) {
 				Prenotazione p = new Prenotazione();
 				
-				p.setIdPrenotazione(rs.getString(1));
+				p.setIdPrenotazione(rs.getInt(1));
 				p.setDataPrenotazione(rs.getDate(2));
 				p.setCheckIn(rs.getDate(3));
 				p.setCheckOut(rs.getDate(4));
@@ -194,7 +194,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			if (rs.next()) {
 				Prenotazione p = new Prenotazione();
 				
-				p.setIdPrenotazione(rs.getString(1));
+				p.setIdPrenotazione(rs.getInt(1));
 				p.setDataPrenotazione(rs.getDate(2));
 				p.setCheckIn(rs.getDate(3));
 				p.setCheckOut(rs.getDate(4));
@@ -222,7 +222,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			while (rs.next()) {
 				Prenotazione p = new Prenotazione();
 
-				p.setIdPrenotazione(rs.getString(1));
+				p.setIdPrenotazione(rs.getInt(1));
 				p.setDataPrenotazione(rs.getDate(2));
 				p.setCheckIn(rs.getDate(3));
 				p.setCheckOut(rs.getDate(4));

@@ -1,10 +1,10 @@
 package model;
 
-import java.util.*;
+import java.sql.Date;
 
 public class Utente {
 		
-	private String idUtente;
+	private int idUtente;
 	private String email;
 	private String password;
 	private String nome;
@@ -18,7 +18,7 @@ public class Utente {
 		
 	}
 		
-	public Utente(String idUtente, String email, String password, String nome, String cognome, Date dataNascita,
+	public Utente(int idUtente, String email, String password, String nome, String cognome, Date dataNascita,
 				String telefono, String indirizzo, int tipoUtente) {
 		this.idUtente = idUtente;
 		this.email = email;
@@ -37,10 +37,10 @@ public class Utente {
 				+ ", dataNascita=" + dataNascita + ", telefono=" + telefono + ", indirizzo=" + indirizzo + ", tipoUtente=" + tipoUtente + "]";
 	}
 		
-	public String getIdUtente() {
+	public int getIdUtente() {
 		return idUtente;
 	}
-	public void setIdUtente(String idUtente) {
+	public void setIdUtente(int idUtente) {
 		this.idUtente = idUtente;
 	}
 	public String getEmail() {

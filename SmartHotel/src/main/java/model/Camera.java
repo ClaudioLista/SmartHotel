@@ -2,7 +2,7 @@ package model;
 
 public class Camera {
 
-	private String idCamera;
+	private int idCamera;
 	private String tipo;
 	private int numPosti;
 	private int dimensione;
@@ -16,7 +16,7 @@ public class Camera {
 		
 	}
 	
-	public Camera(String idCamera, String tipo, int numPosti, int dimensione, double prezzo, int numCamera, String descrizione) {
+	public Camera(int idCamera, String tipo, int numPosti, int dimensione, double prezzo, int numCamera, String descrizione) {
 		super();
 		this.idCamera = idCamera;
 		this.tipo = tipo;
@@ -35,10 +35,10 @@ public class Camera {
 				+ dimensione + ", prezzo=" + prezzo + ", numCamera=" + numCamera+ ", descrizione=" + descrizione + "]";
 	}
 
-	public String getIdCamera() {
+	public int getIdCamera() {
 		return idCamera;
 	}
-	public void setIdCamera(String idCamera) {
+	public void setIdCamera(int idCamera) {
 		this.idCamera = idCamera;
 	}
 	public String getTipo() {

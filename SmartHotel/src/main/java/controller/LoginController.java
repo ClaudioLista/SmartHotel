@@ -24,7 +24,6 @@ import model.Utente;
 @Controller
 public class LoginController {
 	//private static final long serialVersionUID = 1L;
-
 	
 	public ModelAndView doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,6 +35,7 @@ public class LoginController {
 		if (email == null)
 			mv.addObject("messaggio", "Errore, campo Email non compilato");
 		else {
+			//TO-DO aggiustare matches, aggiuntere controllo email
 			if (email.length() < 1  ||  email.length() > 254 )
 				mv.addObject("messaggio", "Errore, campo Email non valido");
 			else {
@@ -61,7 +61,7 @@ public class LoginController {
 						else {
 							
 							mv.addObject("utente", utente);
-							
+							mv.addObject("nomeUtente", utente.getNome() + " " + utente.getCognome());
 				
 							System.out.println("Login Avvenuto");
 							mv.addObject("messaggio", "Login avvenuto");
