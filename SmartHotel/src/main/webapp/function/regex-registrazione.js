@@ -47,12 +47,10 @@ function verify(id, str) {
     }
 
     else if (id == "email") {
-        var regex1 = /^(\w+([\.-])?\w+)/;
-        var regex2 = /^(\w+([\.-])?\w+)/;
+        var regex1 = /^(\w+([\.-])?\w+)+@?(studenti\.unisa\.it)$/;
+        var regex2 = /^(\w+([\.-])?\w+)+@?(unisa\.it)$/;
         input = document.getElementById(id);
-        
-        //|| !(regex1.test(str) || regex2.test(str)
-        if (str.length < 0 || str.length > 254 ) {
+        if (str.length < 0 || str.length > 254 || !(regex1.test(str) || regex2.test(str))) {
             input.setAttribute("class", "form-control is-invalid");
             check.checked = false;
         }

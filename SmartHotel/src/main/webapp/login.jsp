@@ -16,11 +16,11 @@
 		<form method="POST" action="login">
 			<h2 class="sr-only">Login Form</h2>
 			<div class="illustration">
-				<img src="img/profilo.png" width="50%">
+				<img src="img/profilo.png" width="75%">
 			</div>
 			<div class="form-group">
 				<input class="form-control" type="email" name="email" id="email"
-					placeholder="Email" onchange="verifyL(this.value, this.id)" />
+					placeholder="Email" onchange="checkLogin(this.value, this.id)" />
 				<div class="invalid-feedback">Hai sbagliato il formato</div>
 			</div>
 			<div class="form-group">

@@ -50,7 +50,7 @@
 	<!--INIZIO NAV BAR-->
 	<nav class="navbar navbar-light navbar-expand-md fixed-top">
 		<a class="navbar-brand" href="ServletHome"> <img
-			src="https://us.123rf.com/450wm/belchonock/belchonock2011/belchonock201119869/159956905-amazing-unicorn-with-beautiful-mane-on-white-background.jpg?ver=6" width="140px" height="140px" alt="">
+			src="https://us.123rf.com/450wm/belchonock/belchonock2011/belchonock201119869/159956905-amazing-unicorn-with-beautiful-mane-on-white-background.jpg?ver=6" width="200px" height="200px" alt="">
 		</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -61,9 +61,9 @@
 
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a href="NavEdifici" id="elementoL">Camere</a>
+				<li class="nav-item active"><a href="NavCamere" id="elementoL">Camere</a>
 				</li>
-				<li class="nav-item active"><a href="NavDipartimento">Hotel</a>
+				<li class="nav-item active"><a href="NavHotel">Hotel</a>
 				</li>
 			</ul>
 
