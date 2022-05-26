@@ -16,8 +16,9 @@
 	<div id="container-centrale-back">
 		<div id="calendar-background">
 			<header>
-				<div> 
-				Benvenuti a Smart Hotel!
+				<div class="calendar">
+					<h5 id="date"></h5>
+					<h2 id="day"></h2>
 				</div>
 			</header>
 		</div>

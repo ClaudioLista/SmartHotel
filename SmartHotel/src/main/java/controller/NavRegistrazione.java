@@ -25,7 +25,7 @@ public class NavRegistrazione {
 		return mv;
 	}
 
-	@RequestMapping
+	@RequestMapping("/NavRegistrazione")
 	protected ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);

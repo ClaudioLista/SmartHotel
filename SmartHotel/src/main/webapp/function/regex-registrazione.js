@@ -35,6 +35,7 @@ function verify(id, str) {
     }
 
     else if (id == "cognome") {
+        //var regex = /^[A-Z][a-z]*(\s[A-Z][a-z])+$/;
         var regex = /^[a-zA-Z]+$/;
         input = document.getElementById(id);
         if (str.length < 2 || str.length > 25 || !regex.test(str)) {
@@ -47,8 +48,7 @@ function verify(id, str) {
     }
 
     else if (id == "email") {
-        var regex1 = /^(\w+([\.-])?\w+)+@?(studenti\.unisa\.it)$/;
-        var regex2 = /^(\w+([\.-])?\w+)+@?(unisa\.it)$/;
+        var regex1 = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         input = document.getElementById(id);
         if (str.length < 0 || str.length > 254 || !(regex1.test(str) || regex2.test(str))) {
             input.setAttribute("class", "form-control is-invalid");

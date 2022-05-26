@@ -98,7 +98,6 @@ nav .navbar-brand img{
     background: #f1f7fc;
     padding: 4% 20% 4% 20%;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-
 }
 
 hr {
@@ -115,7 +114,10 @@ hr {
 }
 
 #container-centrale-back {
-    background: url("../img/logo.png") no-repeat center;
+	text-align: center;
+    background-image: url("../img/curio.png");
+  	background-repeat: no-repeat;
+  	background-position: center; /* Center the image */
 }
 
 footer .social {
