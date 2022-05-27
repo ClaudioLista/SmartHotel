@@ -4,13 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dao.PrenotazioneDAO;
 import model.Camera;
 import model.DriverManagerConnectionPool;
 import model.Prenotazione;
 import model.Utente;
+import java.util.Date; 
+import java.text.SimpleDateFormat;
 
 public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
@@ -210,6 +214,48 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	// Ricerca prenotazioni per data 
+		@Override
+		public ArrayList<Prenotazione> getbyDate(String email, Date data) {
+				try (Connection con = DriverManagerConnectionPool.getConnection()) {
+					PreparedStatement ps = con.prepareStatement(
+							"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti"
+							+ " FROM prenotazione JOIN utente  on  intestatario = email where email=? AND ( dataPrenotazione BETWEEN ? and ? )order by  Data Desc ;");
+					ps.setString(1, email);
+					
+					// qua passiamo la data corrente
+					ps.setString(2, "1975-01-01");
+					ps.setDate(3, (java.sql.Date) data);
+
+					ArrayList<Prenotazione> prenotazioniData = new ArrayList<>();
+					ResultSet rs = ps.executeQuery();
+					while (rs.next()) {
+						Prenotazione p = new Prenotazione();
+
+						//TENTATIVO : data inizialmente passata come stringa, ma poi l'ho passata tramite Date
+						//Date data_prenot= new SimpleDateFormat("dd/MM/yyyy").parse(data);
+//						SimpleDateFormat data_formatter =new SimpleDateFormat("dd/MM/yyyy");  
+//						Date data_prenot = data_formatter.parse(data);
+						
+						p.setIdPrenotazione(rs.getInt(1));
+						p.setDataPrenotazione(rs.getDate(2));
+						p.setCheckIn(rs.getDate(3));
+						p.setCheckOut(rs.getDate(4));
+						p.setCamera(rs.getString(5));
+						p.setIntestatario(rs.getString(6));
+						p.setNumOspiti(rs.getInt(7));
+
+						prenotazioniData.add(p);
+						
+					}
+					return prenotazioniData;
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		
+		
 
 	@Override
 	public ArrayList<Prenotazione> list() {
@@ -238,5 +284,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
 
 }

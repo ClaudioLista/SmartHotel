@@ -20,6 +20,7 @@ public interface PrenotazioneDAO {
 	public Prenotazione get(String idPrenotazione);
 	public Prenotazione getbyCamera(String camera);
 	public Prenotazione getbyIntestatario(String intestatario);
+	public ArrayList<Prenotazione> getbyDate(String email, Date data);
 	
 	public ArrayList<Prenotazione> list();
 	
