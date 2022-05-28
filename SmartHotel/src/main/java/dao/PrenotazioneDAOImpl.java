@@ -277,7 +277,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		PreparedStatement ps = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
-			ps = con.prepareStatement("SELECT idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti FROM prenotazione ;");
+			ps = con.prepareStatement("SELECT idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo FROM prenotazione ;");
 			ArrayList<Prenotazione> listaPrenotazione = new ArrayList<Prenotazione>();
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -290,6 +290,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 				p.setCamera(rs.getString(5));
 				p.setIntestatario(rs.getString(6));
 				p.setNumOspiti(rs.getInt(7));
+				p.setPrezzo(rs.getDouble(8));
 
 				listaPrenotazione.add(p);
 			}
@@ -302,24 +303,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
 	@Override
 	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut) {
-PreparedStatement ps = null;
-		
-		try (Connection con = DriverManagerConnectionPool.getConnection()) {
-			ps = con.prepareStatement("LOCK TABLES camera c READ, prenotazione p READ,\r\n"
-					+ "        prenotazione WRITE;\r\n"
-					+ "SET @inizioPeriodo = '2006-06-03';\r\n"
-					+ "SET @finePeriodo = '2006-06-10';\r\n"
-					+ "SELECT c.* FROM camere c\r\n"
-					+ "WHERE tipo = 'matrimoniale'\r\n"
-					+ "AND NOT EXISTS\r\n"
-					+ "(SELECT * FROM prenotazioni p WHERE p.camera = c.numero\r\n"
-					+ "AND (p.periodoDal < @finePeriodo and @inizioPeriodo < p.periodoAl)\r\n"
-					+ ");");
-		
-		
 		return null;
 	}
-	
-	
 
 }

@@ -129,7 +129,7 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<a class="dropdown-item" href="NavAreaPersonale">Area
-							personale</a> <a class="dropdown-item" href="NavVisualizzaPrenotazioni">Visualizza Prenotazioni</a>
+							personale</a> <a class="dropdown-item" href="VisualizzaPrenotazioni">Visualizza Prenotazioni</a>
 					</div>
 				</div>
 			</span>

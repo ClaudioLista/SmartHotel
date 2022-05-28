@@ -33,7 +33,6 @@
 						<th>Check in </th>
 						<th>Check Out</th>
 						<th>Camera</th>
-						<th>Intestatario</th>
 						<th>Num Ospiti</th>
 						<th>Prezzo</th>
 					</tr>
@@ -59,7 +58,6 @@
 						<td><%=p.getCheckIn()%></td>
 						<td><%=p.getCheckOut()%></td>
 						<td><%=p.getCamera()%></td>
-						<td><%=p.getIntestatario()%></td>
 						<td><%=p.getNumOspiti()%></td>
 						<td><%=p.getPrezzo()%></td>
 					</tr>

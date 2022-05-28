@@ -58,4 +58,5 @@ public class NavStoricoPrenotazioni {
 			throws ServletException, IOException {
 		return doGet(request, response);
 	}
+	
 }
