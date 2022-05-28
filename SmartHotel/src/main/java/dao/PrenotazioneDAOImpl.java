@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,14 +64,14 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	}
 
 	@Override
-	public synchronized int updateData(String idPrenotazione, Date checkIn, Date checkOut) {
+	public synchronized int updateData(int idPrenotazione, Date checkIn, Date checkOut) {
 		PreparedStatement ps = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement("UPDATE prenotazione SET checkIn=?, checkOut=? WHERE idPrenotazione = ? ;");
 			ps.setDate(1, (java.sql.Date) checkIn);
 			ps.setDate(2, (java.sql.Date) checkOut);
-			ps.setString(3, idPrenotazione);
+			ps.setInt(3, idPrenotazione);
 					
 			int rs = ps.executeUpdate();
 			return rs;
@@ -80,13 +81,13 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	}
 
 	@Override
-	public synchronized int updateIdCamera(String idNuovaCamera, String idVecchiaCamera)  {
+	public synchronized int updateIdCamera(int idNuovaCamera, int idVecchiaCamera)  {
 		PreparedStatement ps = null;
 
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
 			ps = conn.prepareStatement("UPDATE prenotazione SET camera=? WHERE camera=? ;");
-			ps.setString(1, idNuovaCamera);
-			ps.setString(2, idVecchiaCamera);
+			ps.setInt(1, idNuovaCamera);
+			ps.setInt(2, idVecchiaCamera);
 
 			int rs = ps.executeUpdate();
 			return rs;
@@ -96,12 +97,12 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	}
 
 	@Override
-	public int delete(String idPrenotazione) {
+	public int delete(int idPrenotazione) {
 		PreparedStatement ps = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement("DELETE FROM prenotazione WHERE idPrenotazione=? ;");
-			ps.setString(1, idPrenotazione);
+			ps.setInt(1, idPrenotazione);
 			
 			int rs = ps.executeUpdate();
 			return rs;
@@ -126,14 +127,14 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	}
 
 	@Override
-	public Prenotazione get(String idPrenotazione) {
+	public Prenotazione get(int idPrenotazione) {
 		PreparedStatement ps = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			
 			ps = con.prepareStatement("SELECT idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti "
 					+ "FROM prenotazione WHERE idPrenotazione=? ;");
-			ps.setString(1, idPrenotazione);
+			ps.setInt(1, idPrenotazione);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Prenotazione p = new Prenotazione();
@@ -217,16 +218,19 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	
 	// Ricerca prenotazioni per data 
 		@Override
-		public ArrayList<Prenotazione> getbyDate(String email, Date data) {
+		public ArrayList<Prenotazione> getbyDate(String email) {
 				try (Connection con = DriverManagerConnectionPool.getConnection()) {
 					PreparedStatement ps = con.prepareStatement(
 							"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti"
-							+ " FROM prenotazione JOIN utente  on  intestatario = email where email=? AND ( dataPrenotazione BETWEEN ? and ? )order by  Data Desc ;");
+							+ " FROM prenotazione JOIN utente  on  intestatario = email where email=? AND ( dataPrenotazione BETWEEN ? and ? )order by  dataPrenotazione Desc ;");
 					ps.setString(1, email);
 					
+					GetTodayDate gtd = new GetTodayDate();
+					
+					System.out.println(gtd.main());
 					// qua passiamo la data corrente
 					ps.setString(2, "1975-01-01");
-					ps.setDate(3, (java.sql.Date) data);
+					ps.setString(3,gtd.main());
 
 					ArrayList<Prenotazione> prenotazioniData = new ArrayList<>();
 					ResultSet rs = ps.executeQuery();

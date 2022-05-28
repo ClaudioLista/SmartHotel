@@ -38,7 +38,7 @@ public class LogoutController {
 
 	}
 
-	@RequestMapping("logout")
+	@RequestMapping("Logout")
 	public ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);

@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDate;
+//import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,13 +38,14 @@ public class NavStoricoPrenotazioni {
 
 //		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 //		LocalDate localDate = LocalDate.now();
-		Date dtf = new Date();
+//		Date dtf = new Date();
+//		System.out.println(dtf);
 
 		PrenotazioneDAOImpl prenDAO = new PrenotazioneDAOImpl(); 
 		//ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(), dtf.format(localDate));
-		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(), dtf);
+		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail());
 
-		request.setAttribute("listaPrenotazioni", listaPrenotazioni);
+		mv.addObject("listaPrenotazioni", listaPrenotazioni);
 
 		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 		//view.forward(request, response);

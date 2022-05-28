@@ -115,8 +115,8 @@
 
 
 			<%
-				// l'utente è docente
-				} else if (c.getTipoUtente() == 1) {
+				// l'utente è l'admin
+				} else if (c.getTipoUtente() == 0) {
 			%>
 			<span class="navbar-text actions"> <a class="login"
 				href="Logout">Log Out</a>
@@ -129,8 +129,7 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<a class="dropdown-item" href="NavAreaPersonale">Area
-							personale</a> <a class="dropdown-item" href="NavStoricoPrenotazioni">Storico
-							prenotazioni</a>
+							personale</a> <a class="dropdown-item" href="NavVisualizzaPrenotazioni">Visualizza Prenotazioni</a>
 					</div>
 				</div>
 			</span>

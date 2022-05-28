@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDate;
+//import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,7 +34,7 @@ public class EliminaPrenotazione {
 		
 		String ids = request.getParameter("id");
 		if (ids != null) {
-			//int id = Integer.parseInt(ids);
+			int id = Integer.parseInt(ids);
 
 			HttpSession sessione = request.getSession();
 			Utente c = (Utente) sessione.getAttribute("utente");
@@ -45,20 +45,20 @@ public class EliminaPrenotazione {
 //			System.out.println(dtf.format(localDate));
 
 			PrenotazioneDAOImpl prenDAO = new PrenotazioneDAOImpl(); 
-			Date dtf = new Date();
-			prenDAO.delete(ids);
+			//Date dtf = new Date();
+			prenDAO.delete(id);
 
 			//ArrayList<Model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(),dtf.format(localDate));
-			ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(), dtf);
+			ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail());
 			
 			request.removeAttribute("listaPrenotazioni");
-			request.setAttribute("listaPrenotazioni", listaPrenotazioni);
-			request.setAttribute("messaggio", "Eliminazione effettuata");
+			mv.addObject("listaPrenotazioni", listaPrenotazioni);
+			mv.addObject("messaggio", "Eliminazione effettuata");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);
 		} else {
-			request.setAttribute("messaggio", "Eliminazione non effettuata");
+			mv.addObject("messaggio", "Eliminazione non effettuata");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);
@@ -67,7 +67,7 @@ public class EliminaPrenotazione {
 		return mv;
 	}
 
-	@RequestMapping("elimina_prenotazione")
+	@RequestMapping("EliminaPrenotazione")
 	public ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);

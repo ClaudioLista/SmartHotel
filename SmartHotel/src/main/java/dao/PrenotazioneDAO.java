@@ -10,17 +10,17 @@ public interface PrenotazioneDAO {
 	public int save(Prenotazione prenotazione);
 	
 	public int update(Prenotazione prenotazione);
-	public int updateData(String idPrenotazione, Date checkIn, Date checkOut);
-	public int updateIdCamera(String idNuovaCamera,String idVecchiaCamera);
+	public int updateData(int idPrenotazione, Date checkIn, Date checkOut);
+	public int updateIdCamera(int idNuovaCamera,int idVecchiaCamera);
 	//public int updateIntestatario(String idNuovoIntestatario, String idVecchioIntestatario);
 	
-	public int delete (String idPrenotazione);
+	public int delete (int idPrenotazione);
 	public int deletebyCamera(String camera);
 	
-	public Prenotazione get(String idPrenotazione);
+	public Prenotazione get(int idPrenotazione);
 	public Prenotazione getbyCamera(String camera);
 	public Prenotazione getbyIntestatario(String intestatario);
-	public ArrayList<Prenotazione> getbyDate(String email, Date data);
+	public ArrayList<Prenotazione> getbyDate(String email);
 	
 	public ArrayList<Prenotazione> list();
 	
