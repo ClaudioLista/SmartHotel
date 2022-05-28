@@ -11,6 +11,7 @@ public class Prenotazione {
 	private String camera;
 	private String intestatario;
 	private int numOspiti;
+	private double prezzo;
 	
 	public Prenotazione() {
 		
@@ -26,6 +27,7 @@ public class Prenotazione {
 		this.camera = camera;
 		this.intestatario = intestatario;
 		this.numOspiti = numOspiti;
+		
 	}
 
 	@Override
@@ -79,6 +81,14 @@ public class Prenotazione {
 	}
 	public void setNumOspiti(int numOspiti) {
 		this.numOspiti = numOspiti;
+	}
+
+	public double getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(double prezzo) {
+		this.prezzo = prezzo;
 	}
 	
 }

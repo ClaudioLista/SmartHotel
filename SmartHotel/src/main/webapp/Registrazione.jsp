@@ -77,7 +77,7 @@
 						<label for="validationServer01">Data di Nascita</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input type="text" class="form-control" id="data"
+						<input type="date" class="form-control" id="data"
 							placeholder="AAAA-MM-GG" Name="data" required
 							onchange="verify(this.id, this.value)">
 						<div class="invalid-feedback">FORMATO DATA AAAA-MM-GG</div>

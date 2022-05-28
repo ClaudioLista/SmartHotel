@@ -35,6 +35,7 @@
 						<th>Camera</th>
 						<th>Intestatario</th>
 						<th>Num Ospiti</th>
+						<th>Prezzo</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,6 +61,7 @@
 						<td><%=p.getCamera()%></td>
 						<td><%=p.getIntestatario()%></td>
 						<td><%=p.getNumOspiti()%></td>
+						<td><%=p.getPrezzo()%></td>
 					</tr>
 					<%
 						k++;

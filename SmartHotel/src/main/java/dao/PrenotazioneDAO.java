@@ -21,7 +21,8 @@ public interface PrenotazioneDAO {
 	public Prenotazione getbyCamera(String camera);
 	public Prenotazione getbyIntestatario(String intestatario);
 	public ArrayList<Prenotazione> getbyDate(String email);
-	
 	public ArrayList<Prenotazione> list();
+	
+	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut);
 	
 }

@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import dao.PrenotazioneDAO;
 import model.Camera;
@@ -23,9 +24,17 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	public synchronized int save(Prenotazione prenotazione) {
 		PreparedStatement ps = null;
 		
+		CameraDAOImpl cameraDAO = new CameraDAOImpl();
+		double prezzoCamera = cameraDAO.get(prenotazione.getCamera()).getPrezzo();
+		long diff = prenotazione.getCheckOut().getTime() - prenotazione.getCheckIn().getTime();
+		TimeUnit time = TimeUnit.DAYS; 
+        long numeroNotti = time.convert(diff, TimeUnit.MILLISECONDS);
+        double prezzo = numeroNotti*prezzoCamera;
+        
+		
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
-			ps = conn.prepareStatement("INSERT INTO prenotazione(idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti) "
-					+ "VALUES (?,?,?,?,?,?) ;");
+			ps = conn.prepareStatement("INSERT INTO prenotazione(idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo) "
+					+ "VALUES (?,?,?,?,?,?,?) ;");
 			ps.setInt(1, prenotazione.getIdPrenotazione());
 			ps.setDate(2, (java.sql.Date) prenotazione.getDataPrenotazione());
 			ps.setDate(3, (java.sql.Date) prenotazione.getCheckIn());
@@ -33,6 +42,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			ps.setString(5, prenotazione.getCamera());
 			ps.setString(6, prenotazione.getIntestatario());
 			ps.setInt(7, prenotazione.getNumOspiti());
+			ps.setDouble(8, prezzo);
 			
 			int rs = ps.executeUpdate();
 			return rs;
@@ -221,7 +231,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		public ArrayList<Prenotazione> getbyDate(String email) {
 				try (Connection con = DriverManagerConnectionPool.getConnection()) {
 					PreparedStatement ps = con.prepareStatement(
-							"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti"
+							"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo"
 							+ " FROM prenotazione JOIN utente  on  intestatario = email where email=? AND ( dataPrenotazione BETWEEN ? and ? )order by  dataPrenotazione Desc ;");
 					ps.setString(1, email);
 					
@@ -249,6 +259,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 						p.setCamera(rs.getString(5));
 						p.setIntestatario(rs.getString(6));
 						p.setNumOspiti(rs.getInt(7));
+						p.setPrezzo(rs.getDouble(8));
 
 						prenotazioniData.add(p);
 						
@@ -287,6 +298,26 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut) {
+PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("LOCK TABLES camera c READ, prenotazione p READ,\r\n"
+					+ "        prenotazione WRITE;\r\n"
+					+ "SET @inizioPeriodo = '2006-06-03';\r\n"
+					+ "SET @finePeriodo = '2006-06-10';\r\n"
+					+ "SELECT c.* FROM camere c\r\n"
+					+ "WHERE tipo = 'matrimoniale'\r\n"
+					+ "AND NOT EXISTS\r\n"
+					+ "(SELECT * FROM prenotazioni p WHERE p.camera = c.numero\r\n"
+					+ "AND (p.periodoDal < @finePeriodo and @inizioPeriodo < p.periodoAl)\r\n"
+					+ ");");
+		
+		
+		return null;
 	}
 	
 	
