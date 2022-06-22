@@ -195,4 +195,21 @@ public class CameraDAOImpl implements CameraDAO {
 		}
 	}
 
+	@Override
+	public int updateVisibilita(String idCamera, boolean prenotabile) {
+		PreparedStatement ps = null;
+		
+		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
+			ps = conn.prepareStatement("UPDATE camera SET  prenotabile=? WHERE idCamera=? ;");
+			ps.setBoolean(1, prenotabile);
+			ps.setString(2, idCamera);
+			
+
+			int rs = ps.executeUpdate();
+			return rs;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }

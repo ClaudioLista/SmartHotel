@@ -53,6 +53,10 @@
 								<button class="btn action-button" role="button" type="submit">
 									<i class="material-icons">delete</i>
 								</button>
+								
+								<a class="btn action-button" role="button"
+							href="NavModificaPrenotazione"> <i class="material-icons">edit</i>
+						</a>
 							</form>
 						</th>
 						<td><%=p.getDataPrenotazione()%></td>

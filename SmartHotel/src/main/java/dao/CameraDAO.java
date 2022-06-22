@@ -10,6 +10,7 @@ public interface CameraDAO {
 	
 	public int update(Camera camera);
 	public int updatePrezzo(int numCamera, double prezzo);
+	public int updateVisibilita(String idCamera, boolean prenotabile);
 	
 	public int delete (String idCamera);
 	public int deletebyNumCamera(int numCamera);

@@ -43,7 +43,7 @@ public class NavStoricoPrenotazioni {
 
 		PrenotazioneDAOImpl prenDAO = new PrenotazioneDAOImpl(); 
 		//ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(), dtf.format(localDate));
-		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail());
+		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyEmail(c.getEmail());
 
 		mv.addObject("listaPrenotazioni", listaPrenotazioni);
 

@@ -227,8 +227,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	}
 	
 	// Ricerca prenotazioni per data 
-		@Override
-		public ArrayList<Prenotazione> getbyDate(String email) {
+		public ArrayList<Prenotazione> getbyEmail(String email) {
 				try (Connection con = DriverManagerConnectionPool.getConnection()) {
 					PreparedStatement ps = con.prepareStatement(
 							"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo"

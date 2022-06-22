@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.CameraDAOImpl;
 import dao.PrenotazioneDAOImpl;
 import dao.UtenteDAOImpl;
 import model.Utente;
@@ -25,12 +26,12 @@ import model.Utente;
  * Servlet implementation class EliminaPrenotazione
  */
 @Controller
-public class EliminaPrenotazione {
+public class EliminaCamera {
 	
 	public ModelAndView doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		ModelAndView mv = new ModelAndView("StoricoPrenotazioni.jsp");
+		ModelAndView mv = new ModelAndView("VisualizzaCamere.jsp");
 		
 		String ids = request.getParameter("id");
 		if (ids != null) {
@@ -39,26 +40,21 @@ public class EliminaPrenotazione {
 			HttpSession sessione = request.getSession();
 			Utente c = (Utente) sessione.getAttribute("utente");
 
-			// prende la data corrente
-//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//			LocalDate localDate = LocalDate.now();
-//			System.out.println(dtf.format(localDate));
 
-			PrenotazioneDAOImpl prenDAO = new PrenotazioneDAOImpl(); 
-			//Date dtf = new Date();
-			prenDAO.delete(id);
-
-			//ArrayList<Model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(),dtf.format(localDate));
-			ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyEmail(c.getEmail());
+			CameraDAOImpl camDAO = new CameraDAOImpl();
 			
-			request.removeAttribute("listaPrenotazioni");
-			mv.addObject("listaPrenotazioni", listaPrenotazioni);
-			mv.addObject("messaggio", "Eliminazione effettuata");
+			camDAO.updateVisibilita(ids, !camDAO.get(ids).isPrenotabile());
+
+			ArrayList<model.Camera> listaCamere = camDAO.list();
+			
+			request.removeAttribute("listaCamere");
+			mv.addObject("listaCamere", listaCamere);
+			mv.addObject("messaggio", "Visibilità modificata ");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);
 		} else {
-			mv.addObject("messaggio", "Eliminazione non effettuata");
+			mv.addObject("messaggio", "Visibilità non modificata");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);
@@ -67,7 +63,7 @@ public class EliminaPrenotazione {
 		return mv;
 	}
 
-	@RequestMapping("EliminaPrenotazione")
+	@RequestMapping("EliminaCamera")
 	public ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);
