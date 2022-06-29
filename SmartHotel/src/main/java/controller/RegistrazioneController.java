@@ -63,7 +63,6 @@ public class RegistrazioneController {
 									else {
 										
 										String dataString = request.getParameter("data");
-										System.out.println(dataString);
 										Date dataNascita = Date.valueOf(dataString);
 										
 										System.out.println("CONTROLLO DATA");

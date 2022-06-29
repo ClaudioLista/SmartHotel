@@ -7,15 +7,14 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
+import java.sql.Date;
 import dao.PrenotazioneDAO;
 import model.Camera;
 import model.DriverManagerConnectionPool;
 import model.Prenotazione;
 import model.Utente;
-import java.util.Date; 
+
 import java.text.SimpleDateFormat;
 
 public class PrenotazioneDAOImpl implements PrenotazioneDAO {
@@ -303,6 +302,41 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	@Override
 	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut) {
 		return null;
+	}
+
+	@Override
+	public ArrayList<Camera> getCamereDisponibili(Date checkIn, Date checkOut, int NumPosti) {
+		PreparedStatement ps = null;
+		
+		System.out.println(checkIn);
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("SELECT c.* FROM camera c WHERE numPosti = ? AND NOT EXISTS (SELECT * FROM prenotazione p WHERE p.camera = c.numCamera AND (p.checkIn < '?' and '?' < p.checkOut));");
+			ps.setDate(2, checkIn);
+			ps.setDate(3,checkOut);
+			ps.setInt(1, NumPosti);
+			
+			ArrayList<Camera> listaCamere = new ArrayList<Camera>();
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Camera c = new Camera();
+
+				c.setIdCamera(rs.getInt(1));
+				c.setNumCamera(rs.getInt(2));
+				c.setPrenotabile(rs.getBoolean(3));
+				c.setTipo(rs.getString(4));
+				c.setNumPosti(rs.getInt(5));
+				c.setDimensione(rs.getInt(6));
+				c.setDescrizione(rs.getString(7));
+				c.setPrezzo(rs.getDouble(8));
+
+				listaCamere.add(c);
+			}
+			
+			return listaCamere;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 }

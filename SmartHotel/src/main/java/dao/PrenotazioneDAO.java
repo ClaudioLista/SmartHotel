@@ -1,8 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
+import model.Camera;
 import model.Prenotazione;
 
 public interface PrenotazioneDAO {
@@ -22,6 +23,8 @@ public interface PrenotazioneDAO {
 	public Prenotazione getbyIntestatario(String intestatario);
 	public ArrayList<Prenotazione> getbyEmail(String email);
 	public ArrayList<Prenotazione> list();
+	
+	public ArrayList<Camera> getCamereDisponibili(Date checkIn, Date checkOut, int NumPosti);
 	
 	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut);
 	

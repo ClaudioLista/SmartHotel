@@ -65,6 +65,8 @@
 				</li>
 				<li class="nav-item active"><a href="NavHotel">Hotel</a>
 				</li>
+				<li class="nav-item active"><a href="NavPrenotaCamera">Prenota una Camera</a>
+				</li>
 			</ul>
 
 
@@ -193,4 +195,5 @@
 			%>
 		</div>
 	</nav>
+	
 	<!--FINE NAVBAR-->
