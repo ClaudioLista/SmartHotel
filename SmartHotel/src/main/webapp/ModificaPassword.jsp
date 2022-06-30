@@ -61,7 +61,7 @@
 				</div>
 				<input type="hidden" name="email" value='<%=c.getEmail()%>'/>
 				<button class="btn btn-secondary" type="submit" Name="submit"
-					id="submit">Submit</button>
+					id="submit">Modifica Password</button>
 			</form>
 
 		</div>

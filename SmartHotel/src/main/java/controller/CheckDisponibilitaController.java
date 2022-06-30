@@ -42,18 +42,27 @@ public class CheckDisponibilitaController {
 		if (checkOut == null)
 			mv.addObject("messaggio", "Errore, campo Check-Out non compilato");	
 		
+		if (checkOut.getTime()-checkIn.getTime()<=0)
+		{
+			mv.addObject("messaggio", "Errore, il Check-Out deve venire dopo il Check-In");
+			mv.setViewName("RicercaDisponibilita.jsp");
+		}
+		
+		else {
 		String NumOspitiString = request.getParameter("numOspiti");
 		int NumOspiti = Integer.valueOf(NumOspitiString);
 				if (NumOspiti == 0)
 					mv.addObject("messaggio", "Errore, campo NumOspiti non compilato");
 				
 				PrenotazioneDAOImpl PrenDao = new PrenotazioneDAOImpl(); 
-				ArrayList<model.Camera> listaCamere = PrenDao.getCamereDisponibili(checkIn, checkOut, NumOspiti);
+				ArrayList<model.CameraDisponibile> listaCamere = PrenDao.getCamereDisponibili(checkIn, checkOut, NumOspiti);
 				
 				mv.addObject("listaCamere", listaCamere);
 				System.out.println(listaCamere);
-				
-				
+				mv.addObject("checkIn",checkIn);
+				mv.addObject("checkOut",checkOut);
+				mv.addObject("numOspiti",NumOspiti);
+		}		
 		return mv;
 	}
 	

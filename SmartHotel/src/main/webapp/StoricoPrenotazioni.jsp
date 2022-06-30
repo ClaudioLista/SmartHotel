@@ -6,12 +6,15 @@
 <%@	page import="model.Utente"%>
 <%@	page import="java.util.ArrayList"%>
 <%@	page import="model.Prenotazione"%>
+<%@ page import="dao.CameraDAOImpl" %>
+<%@ page import="dao.GetTodayDate" %>
 
 <%
 	String pageTitle = "Storico prenotazioni";
 	request.setAttribute("pageTitle", pageTitle);
 	Utente c = (Utente) session.getAttribute("utente");
 	ArrayList<model.Prenotazione> listaPrenotazioni = (ArrayList<model.Prenotazione>) request.getAttribute("listaPrenotazioni");
+	CameraDAOImpl camDAO = new CameraDAOImpl();
 %>
 
 <jsp:include page="Header.jsp" />
@@ -32,9 +35,10 @@
 						<th>Data Prenotazione</th>
 						<th>Check in </th>
 						<th>Check Out</th>
-						<th>Camera</th>
+						<th>Tipo Camera</th>
 						<th>Num Ospiti</th>
 						<th>Prezzo</th>
+						<th>  </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,20 +50,35 @@
 					<tr>
 						<th style="display: ruby block"># <%=k%> <%=""%>
 
-							<form action="EliminaPrenotazione" method="POST">
-								<input type="hidden" name="id"
-									value="<%=p.getIdPrenotazione()%>">
-								<button class="btn action-button" role="button" type="submit">
-									<i class="material-icons">delete</i>
-								</button>
-							</form>
+						
+
 						</th>
 						<td><%=p.getDataPrenotazione()%></td>
 						<td><%=p.getCheckIn()%></td>
 						<td><%=p.getCheckOut()%></td>
-						<td><%=p.getCamera()%></td>
+						<td><%=camDAO.getbyNumCamera(Integer.parseInt(p.getCamera())).getTipo()%></td>
 						<td><%=p.getNumOspiti()%></td>
-						<td><%=p.getPrezzo()%></td>
+						<td><%=p.getPrezzo()%> €</td>
+						
+						<%
+						GetTodayDate gtd = new GetTodayDate();
+						String data = gtd.main();
+						if(false) {
+					%>
+						<td>
+						
+						<form action="EffettuaCheckIn" method="POST">
+								<input type="hidden" name="idCamera"
+									value="<%=p.getIdPrenotazione()%>">
+														
+						
+						<button class="btn btn-secondary" type="submit" Name="submit"
+							id="submit">Effettua Check-In</button>
+						</td>
+						<%
+						}
+						
+					%>							
 					</tr>
 					<%
 						k++;

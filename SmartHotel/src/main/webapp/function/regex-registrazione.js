@@ -19,6 +19,19 @@ function submitting(form){
     }
 }
 
+function verifyCheckOut(id1,checkin,id2,checkout){
+	var check = document.getElementById("check");
+	input1 = document.getElementById("checkIn");
+	input1 = document.getElementById("checkOut'");
+	if (checkOut.getTime()-checkIn.getTime()<0){
+		input.setAttribute("class", "form-control is-invalid");
+        check.checked = false;
+	}
+	else {
+            input.setAttribute("class", "form-control is-valid");
+        }
+}
+
 function verify(id, str) {
     var check = document.getElementById("check");
 

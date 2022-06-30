@@ -53,9 +53,9 @@
 									<i class="material-icons">remove_red_eye</i>
 								</button>
 								
-								<a class="btn action-button" role="button"
-							href="NavModificaCamera"> <i class="material-icons">edit</i>
-						</a>
+								<button class="btn btn-secondary" type="submit" Name="submit"
+								id="submit">Modifica Password</button>
+						
 							</form>
 						</th>
 						<td><%=cam.getNumCamera()%></td>
@@ -63,7 +63,7 @@
 						<td><%=cam.getTipo()%></td>
 						<td><%=cam.getNumPosti()%></td>
 						<td><%=cam.getDimensione()%></td>
-						<td><%=cam.getPrezzo()%></td>
+						<td><%=cam.getPrezzo()%> €</td>
 					</tr>
 					<%
 						k++;

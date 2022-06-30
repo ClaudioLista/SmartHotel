@@ -14,18 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
  * Servlet implementation class NavPrenotaCamera
  */
 @Controller
-public class NavPrenotaCamera{
+public class NavRiepilogoPrenotazione{
 
 	protected ModelAndView doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("RicercaDisponibilita.jsp");
+		mv.setViewName("RiepilogoPrenotazione.jsp");
 		
 		return mv;
 	}
 
-	@RequestMapping("NavPrenotaCamera")
+	@RequestMapping("NavRiepilogoPrenotazione")
 	protected ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);
