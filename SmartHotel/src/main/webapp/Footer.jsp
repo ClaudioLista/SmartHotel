@@ -5,7 +5,7 @@
 <div class="footer-basic">
 	<footer>
 		<div class="social">
-			<a href="#"> <span class="iconify"
+			<a href="https://www.instagram.com/curiosity_astronomy/" target="_blank"> <span class="iconify"
 				data-icon="brandico:instagram-filled" data-inline="false"></span>
 			</a> <a href="#"> <span class="iconify" data-icon="fa:snapchat"
 				data-inline="false"></span>

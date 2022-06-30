@@ -32,6 +32,7 @@
 						<th>Tipo Camera</th>
 						<th>Numero Posti </th>
 						<th>Dimensione</th>
+						<th>Descrizione</th>
 						<th>Prezzo per notte</th>
 					</tr>
 				</thead>
@@ -59,6 +60,7 @@
 						<td><%=cam.getTipo()%></td>
 						<td><%=cam.getNumPosti()%></td>
 						<td><%=cam.getDimensione()%></td>
+						<td><%=cam.getDescrizione()%></td>
 						<td><%=cam.getPrezzo()%></td>
 					</tr>
 					<%

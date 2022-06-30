@@ -20,7 +20,7 @@ public class NavPrenotaCamera{
 			throws ServletException, IOException {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("RicercaDisponibilit‡.jsp");
+		mv.setViewName("RicercaDisponibilit√†.jsp");
 		
 		return mv;
 	}

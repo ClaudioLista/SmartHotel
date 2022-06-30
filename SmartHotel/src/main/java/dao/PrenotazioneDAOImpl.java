@@ -308,11 +308,19 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	public ArrayList<Camera> getCamereDisponibili(Date checkIn, Date checkOut, int NumPosti) {
 		PreparedStatement ps = null;
 		
-		System.out.println(checkIn);
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
-			ps = con.prepareStatement("SELECT c.* FROM camera c WHERE numPosti = ? AND NOT EXISTS (SELECT * FROM prenotazione p WHERE p.camera = c.numCamera AND (p.checkIn < '?' and '?' < p.checkOut));");
-			ps.setDate(2, checkIn);
-			ps.setDate(3,checkOut);
+			ps = con.prepareStatement(
+					"SELECT c.* FROM camera c WHERE numPosti >= ? "
+					+ "AND NOT EXISTS (SELECT * FROM prenotazione p "
+					+ "WHERE p.camera = c.idCAMERA AND (? >= p.checkIn and ? <= p.checkOut))");
+			
+			java.sql.Date checkIndateDB = new java.sql.Date(checkIn.getTime());
+			java.sql.Date checkOutdateDB = new java.sql.Date(checkIn.getTime());
+			
+			System.out.println(checkIndateDB);
+			
+			ps.setDate(2, checkIndateDB);
+			ps.setDate(3, checkOutdateDB);
 			ps.setInt(1, NumPosti);
 			
 			ArrayList<Camera> listaCamere = new ArrayList<Camera>();
