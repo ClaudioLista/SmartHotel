@@ -34,8 +34,8 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
         */
 		
 		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
-			ps = conn.prepareStatement("INSERT INTO prenotazione(idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo) "
-					+ "VALUES (?,?,?,?,?,?,?,?) ;");
+			ps = conn.prepareStatement("INSERT INTO prenotazione(idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo,PINCamera) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?) ;");
 			
 			ps.setInt(1, prenotazione.getIdPrenotazione());
 			GetTodayDate gtd = new GetTodayDate();
@@ -46,6 +46,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			ps.setString(6, prenotazione.getIntestatario());
 			ps.setInt(7, prenotazione.getNumOspiti());
 			ps.setDouble(8, prenotazione.getPrezzo());
+			ps.setInt(9, prenotazione.getPINCamera());
 			
 			int rs = ps.executeUpdate();
 			return rs;
@@ -338,7 +339,31 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
 	@Override
 	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut) {
-		return null;
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement(
+					"SELECT c.* FROM camera c WHERE numCamera = ? "
+					+ "AND c.prenotabile = 1 AND NOT EXISTS (SELECT * FROM prenotazione p "
+					+ "WHERE p.camera = c.numCamera AND (? >= p.checkIn and ? <= p.checkOut)) ");
+			
+			java.sql.Date checkIndateDB = new java.sql.Date(checkIn.getTime());
+			java.sql.Date checkOutdateDB = new java.sql.Date(checkIn.getTime());
+			ps.setDate(2, checkIndateDB);
+			ps.setDate(3, checkOutdateDB);
+			ps.setInt(1, Camera);
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				return true;
+			}
+			else return false;
+		}
+		
+		catch (SQLException e) {
+		throw new RuntimeException(e);
+		}	
 	}
 
 	@Override

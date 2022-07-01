@@ -9,13 +9,13 @@ public class GetTodayDate {
 
 	public String main() {
 		
-		SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
 
         Date dateObj = calendar.getTime();
         String formattedDate = dtf.format(dateObj);
 
-        System.out.println(dateObj);
+        System.out.println(formattedDate);
         return formattedDate;
 	}
 

@@ -81,10 +81,10 @@
 						value="<%=c.getEmail()%>">
 				<input type="hidden" name="prezzo"
 						value="<%=prezzoTotale%>">						
-
+				<div>
 				<button class="btn btn-secondary" id="submit" Name="submit"
 					type="submit">Conferma Prenotazione</button>
-				
+				</div>
 			</form>
 		</div>
 	</div>	

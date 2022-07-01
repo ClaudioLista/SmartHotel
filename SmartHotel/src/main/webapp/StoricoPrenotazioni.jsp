@@ -5,6 +5,11 @@
 
 <%@	page import="model.Utente"%>
 <%@	page import="java.util.ArrayList"%>
+<%@	page import="java.sql.Date"%>
+<%@	page import="java.sql.Time"%>
+<%@	page import="java.text.SimpleDateFormat"%>
+<%@	page import="java.util.concurrent.TimeUnit"%>
+
 <%@	page import="model.Prenotazione"%>
 <%@ page import="dao.CameraDAOImpl" %>
 <%@ page import="dao.GetTodayDate" %>
@@ -38,7 +43,7 @@
 						<th>Tipo Camera</th>
 						<th>Num Ospiti</th>
 						<th>Prezzo</th>
-						<th>  </th>
+						<th> </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,8 +67,13 @@
 						
 						<%
 						GetTodayDate gtd = new GetTodayDate();
-						String data = gtd.main();
-						if(false) {
+						String dataString = gtd.main();
+						Date data = Date.valueOf(dataString);
+						long diff = p.getCheckIn().getTime()-data.getTime();
+						TimeUnit time = TimeUnit.DAYS; 
+				        long numeroGiorni = time.convert(diff, TimeUnit.MILLISECONDS);
+						
+						if(numeroGiorni<=1) {
 					%>
 						<td>
 						

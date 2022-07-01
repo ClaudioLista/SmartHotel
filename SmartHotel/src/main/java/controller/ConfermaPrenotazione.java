@@ -20,6 +20,7 @@ import dao.UtenteDAOImpl;
 import model.Prenotazione;
 import model.Utente;
 import java.sql.Date;
+import java.util.Random;
 
 @Controller
 public class ConfermaPrenotazione {
@@ -41,6 +42,9 @@ public class ConfermaPrenotazione {
 		Date dataAttuale = checkIn;
 		Prenotazione p = new Prenotazione();
 		
+		Random rand = new Random();
+		int PIN = 10000 + rand.nextInt(89999);
+		
 		p.setCheckIn(checkIn);
 		p.setCheckOut(checkOut);
 		p.setNumOspiti(numOspiti);
@@ -48,14 +52,21 @@ public class ConfermaPrenotazione {
 		p.setIntestatario(intestatario);
 		p.setPrezzo(prezzo);
 		p.setDataPrenotazione(dataAttuale);
+		p.setPINCamera(PIN);
 		
 		PrenotazioneDAOImpl pDao = new PrenotazioneDAOImpl();
 		
-		if(pDao.save(p) == 1)
+		if (pDao.checkDisponibilita(Integer.parseInt(camera), checkIn,checkOut))
 		{
-			mv.addObject("messaggio", "Prenotazione Effettuata");
+			if(pDao.save(p) == 1)
+			{
+				mv.addObject("messaggio", "Prenotazione effettuata");
+			}
+			else mv.addObject("messaggio", "Prenotazione fallita");
 		}
-		else mv.addObject("messaggio", "Prenotazione Fallita");
+		else mv.addObject("messaggio", "Prenotazione fallita!, camera già prenotata");
+		
+		
 		
 		
 		return mv;

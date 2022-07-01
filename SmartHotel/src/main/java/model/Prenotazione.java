@@ -8,10 +8,46 @@ public class Prenotazione {
 	private Date dataPrenotazione;
 	private Date checkIn;
 	private Date checkOut;
+	public int getPINCamera() {
+		return PINCamera;
+	}
+
+	public void setPINCamera(int pINCamera) {
+		PINCamera = pINCamera;
+	}
+
+	public boolean isCheckInEffettuato() {
+		return CheckInEffettuato;
+	}
+
+	public void setCheckInEffettuato(boolean checkInEffettuato) {
+		CheckInEffettuato = checkInEffettuato;
+	}
+
+	public boolean isCheckOutEffettuato() {
+		return CheckOutEffettuato;
+	}
+
+	public void setCheckOutEffettuato(boolean checkOutEffettuato) {
+		CheckOutEffettuato = checkOutEffettuato;
+	}
+
+	public int getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(int saldo) {
+		this.saldo = saldo;
+	}
+
 	private String camera;
 	private String intestatario;
 	private int numOspiti;
 	private double prezzo;
+	private int PINCamera;
+	private boolean CheckInEffettuato;
+	private boolean CheckOutEffettuato;
+	private int saldo;
 	
 	public Prenotazione() {
 		
