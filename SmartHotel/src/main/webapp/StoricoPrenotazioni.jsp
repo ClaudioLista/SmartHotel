@@ -73,12 +73,12 @@
 						TimeUnit time = TimeUnit.DAYS; 
 				        long numeroGiorni = time.convert(diff, TimeUnit.MILLISECONDS);
 						
-						if(numeroGiorni<=1) {
+						if(numeroGiorni<=1 ) {
 					%>
 						<td>
 						
 						<form action="EffettuaCheckIn" method="POST">
-								<input type="hidden" name="idCamera"
+								<input type="hidden" name="idPrenotazione"
 									value="<%=p.getIdPrenotazione()%>">
 														
 						

@@ -20,6 +20,8 @@ public interface PrenotazioneDAO {
 	public int delete (int idPrenotazione);
 	public int deletebyCamera(String camera);
 	
+	public int effettuaCheckIn(int idPrenotazione, String numeroDocumento);
+	
 	public Prenotazione get(int idPrenotazione);
 	public Prenotazione getbyCamera(String camera);
 	public Prenotazione getbyIntestatario(String intestatario);

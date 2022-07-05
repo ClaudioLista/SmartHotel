@@ -411,4 +411,28 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 
 	}
 
+	@Override
+	public int effettuaCheckIn(int idPrenotazione, String numeroDocumento) {
+		
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement(
+					"UPDATE prenotazione set DocumentoIntestatario = ?,checkInEffettuato = ? where idPrenotazione = ?");
+					
+			ps.setString(1, numeroDocumento);
+			ps.setBoolean(2, true);
+			ps.setInt(3, idPrenotazione);
+
+			
+			int rs = ps.executeUpdate();
+			return rs;
+
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
 }
