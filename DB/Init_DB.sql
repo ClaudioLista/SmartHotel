@@ -2,7 +2,7 @@ create table camera
 (
     idCAMERA    int auto_increment
         primary key,
-    numStanza   int          not null,
+    numCamera   int          not null,
     prenotabile tinyint(1)   not null,
     tipo        varchar(45)  not null,
     numPosti    int          not null,
@@ -12,7 +12,7 @@ create table camera
     constraint CAMERA_idCAMERA_uindex
         unique (idCAMERA),
     constraint CAMERA_numStanza_uindex
-        unique (numStanza)
+        unique (numCamera)
 );
 
 create table utente
@@ -35,20 +35,26 @@ create table utente
 
 create table prenotazione
 (
-    idPRENOTAZIONE   int auto_increment
+    idPRENOTAZIONE     int auto_increment
         primary key,
-    dataPrenotazione date        not null,
-    checkIn          date        not null,
-    checkOut         date        not null,
-    camera           int         not null,
-    intestatario     varchar(60) not null,
-    numOspiti        int         not null,
+    dataPrenotazione   datetime             not null,
+    checkIn            date                 not null,
+    checkOut           date                 not null,
+    camera             int                  not null,
+    intestatario       varchar(60)          not null,
+    numOspiti          int                  not null,
+    prezzo             double               not null,
+    checkInEffettuato  tinyint(1) default 0 not null,
+    checkOutEffettuato tinyint(1) default 0 not null,
+    PINCamera          int                  not null,
+    Saldo              int        default 0 null,
     constraint PRENOTAZIONE_idPRENOTAZIONE_uindex
         unique (idPRENOTAZIONE),
-    constraint prenotazione_camera_idCAMERA_fk
-        foreign key (camera) references camera (idCAMERA),
     constraint prenotazione_utente_email_fk
         foreign key (intestatario) references utente (email)
 );
+
+create index prenotazione_camera_numStanza_fk
+    on prenotazione (camera);
 
 
