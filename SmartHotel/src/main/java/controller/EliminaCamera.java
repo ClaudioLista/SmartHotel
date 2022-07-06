@@ -35,11 +35,6 @@ public class EliminaCamera {
 		
 		String ids = request.getParameter("id");
 		if (ids != null) {
-			int id = Integer.parseInt(ids);
-
-			HttpSession sessione = request.getSession();
-			Utente c = (Utente) sessione.getAttribute("utente");
-
 
 			CameraDAOImpl camDAO = new CameraDAOImpl();
 			
@@ -49,12 +44,12 @@ public class EliminaCamera {
 			
 			request.removeAttribute("listaCamere");
 			mv.addObject("listaCamere", listaCamere);
-			mv.addObject("messaggio", "Visibilità modificata ");
+			mv.addObject("messaggio", "Visibilitï¿½ modificata ");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);
 		} else {
-			mv.addObject("messaggio", "Visibilità non modificata");
+			mv.addObject("messaggio", "Visibilitï¿½ non modificata");
 
 //			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
 //			view.forward(request, response);

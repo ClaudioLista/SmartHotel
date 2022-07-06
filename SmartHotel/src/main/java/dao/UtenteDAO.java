@@ -18,5 +18,6 @@ public interface UtenteDAO {
 	public Utente getbyKey(String email, String password);
 	
 	public ArrayList<Utente> list();	
+	public ArrayList<Utente> listClienti();
 	
 }
