@@ -15,6 +15,16 @@ create table camera
         unique (numCamera)
 );
 
+create table documento
+(
+    IdDocumento           int          not null,
+    TipoDocumento         varchar(30)  not null,
+    NumeroDocumento       varchar(10)  not null
+        primary key,
+    IntestatarioDocumento varchar(60)  null,
+    PathDocumento         varchar(200) null
+);
+
 create table utente
 (
     idUTENTE    int auto_increment
@@ -35,21 +45,24 @@ create table utente
 
 create table prenotazione
 (
-    idPRENOTAZIONE     int auto_increment
+    idPRENOTAZIONE        int auto_increment
         primary key,
-    dataPrenotazione   datetime             not null,
-    checkIn            date                 not null,
-    checkOut           date                 not null,
-    camera             int                  not null,
-    intestatario       varchar(60)          not null,
-    numOspiti          int                  not null,
-    prezzo             double               not null,
-    checkInEffettuato  tinyint(1) default 0 not null,
-    checkOutEffettuato tinyint(1) default 0 not null,
-    PINCamera          int                  not null,
-    Saldo              int        default 0 null,
+    dataPrenotazione      datetime             not null,
+    checkIn               date                 not null,
+    checkOut              date                 not null,
+    camera                int                  not null,
+    intestatario          varchar(60)          not null,
+    numOspiti             int                  not null,
+    prezzo                double               not null,
+    checkInEffettuato     tinyint(1) default 0 not null,
+    checkOutEffettuato    tinyint(1) default 0 not null,
+    PINCamera             int                  not null,
+    Saldo                 int        default 0 null,
+    DocumentoIntestatario varchar(10)          null,
     constraint PRENOTAZIONE_idPRENOTAZIONE_uindex
         unique (idPRENOTAZIONE),
+    constraint prenotazione_documento_NumeroDocumento_fk
+        foreign key (DocumentoIntestatario) references documento (NumeroDocumento),
     constraint prenotazione_utente_email_fk
         foreign key (intestatario) references utente (email)
 );
