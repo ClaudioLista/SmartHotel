@@ -13,6 +13,7 @@ public class DriverManagerConnectionPool {
     config.setJdbcUrl("jdbc:mysql://localhost:3306/smarthotel");
     config.setUsername("root");
     config.setPassword("password");
+    //config.setPassword("RobyDatabase.1");
     config.addDataSourceProperty("cachePrepStmts", "true");
     config.addDataSourceProperty("prepStmtCacheSize", "250");
     config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

@@ -10,6 +10,7 @@ public interface UtenteDAO {
 	
 	public int updateTipo(String email, int tipoUtente);
 	public int updatePassword(String email, String newPassword);
+	public int updateDati(String email, String newIndirizzo, String newTelefono);
 	
 	public int delete (String idUtente);
 	

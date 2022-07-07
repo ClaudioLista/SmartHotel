@@ -68,6 +68,25 @@ public class UtenteDAOImpl implements UtenteDAO {
 		}
 	}
 
+	
+	@Override
+	public synchronized int updateDati(String email, String newIndirizzo, String newTelefono){
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("UPDATE utente SET  indirizzo=?, telefono=?  WHERE email =? ;");
+			ps.setString(1, newIndirizzo);
+			ps.setString(2, newTelefono);
+			ps.setString(3, email);
+			
+			int rs = ps.executeUpdate();
+			return rs;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
 	@Override
 	public int delete(String idUtente) {
 		PreparedStatement ps = null;

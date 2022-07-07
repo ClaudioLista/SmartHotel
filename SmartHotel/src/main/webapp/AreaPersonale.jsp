@@ -49,6 +49,17 @@
 			</table>
 		</div>
 	</div>
+	
+			<td>
+						
+						<form action="NavModificaProfilo" method="POST">
+								<input type="hidden" name="idUtente"
+									value="<%=c.getIdUtente()%>">
+														
+						
+						<button class="btn btn-secondary" type="submit" Name="submit"
+							id="submit">Modifica Profilo</button>
+		</td>
 </div>
 <!--FINE CONTAINER CENTRALE-->
 
