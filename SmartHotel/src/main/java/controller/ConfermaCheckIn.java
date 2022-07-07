@@ -53,16 +53,8 @@ public class ConfermaCheckIn {
 		else mv.addObject("messaggio", "Check-In fallito");
 		
 
-		GetTodayDate gtd = new GetTodayDate();
-
-
-		
+		GetTodayDate gtd = new GetTodayDate();		
 		PrenotazioneDAOImpl pDao = new PrenotazioneDAOImpl();
-		
-		
-		
-		
-		
 		
 		return mv;
 		

@@ -49,12 +49,13 @@
 							<form action="EliminaCamera" method="POST">
 								<input type="hidden" name="id"
 									value="<%=cam.getIdCamera()%>">
+									
 								<button class="btn action-button" role="button" type="submit">
 									<i class="material-icons">remove_red_eye</i>
 								</button>
 								
 								<button class="btn btn-secondary" type="submit" Name="submit"
-								id="submit">Modifica Password</button>
+								id="submit">Modifica Camera</button>
 						
 							</form>
 						</th>

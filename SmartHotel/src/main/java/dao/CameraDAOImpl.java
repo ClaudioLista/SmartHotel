@@ -160,10 +160,13 @@ public class CameraDAOImpl implements CameraDAO {
 				
 				return c;
 			}
-			return null;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+		
+		return null;
+		
 	}
 	
 	@Override

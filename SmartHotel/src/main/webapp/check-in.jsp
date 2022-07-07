@@ -24,6 +24,7 @@
 		<div class="col-md-8 offset-md-2">
 			<form class="custom-form" method="POST" action="ConfermaCheckIn">
 				<h1>Inserire i dati per effettuare il check-in</h1>
+				
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
 						<label for="validationServer03">Tipo documento</label>
@@ -64,14 +65,10 @@
 					<button class="btn btn-secondary" id="submit" Name="submit"
 					type="submit">Submit</button>	
 					</div>
-					
-					
+
 				</div>
-	
-				
-				
-					
-					</div>
+
+			</div>
 				
 			</form>
 			</div>

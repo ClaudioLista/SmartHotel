@@ -206,5 +206,35 @@ public class UtenteDAOImpl implements UtenteDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	@Override
+	public ArrayList<Utente> listClienti() {
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("SELECT idUtente,email,password,nome,cognome,dataNascita,telefono,indirizzo,tipoUtente FROM utente WHERE tipoUtente = 1;");
+			ArrayList<Utente> listaUtente = new ArrayList<Utente>();
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Utente p = new Utente();
+				
+				p.setIdUtente(rs.getInt(1));
+				p.setEmail(rs.getString(2));
+				p.setPassword(rs.getString(3));
+				p.setNome(rs.getString(4));
+				p.setCognome(rs.getString(5));
+				p.setDataNascita(rs.getDate(6));
+				p.setTelefono(rs.getString(7));
+				p.setIndirizzo(rs.getString(8));
+				p.setTipoUtente(rs.getInt(9));
+
+				listaUtente.add(p);
+			}
+			
+			return listaUtente;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }
