@@ -54,7 +54,15 @@
 				</tbody>
 			</table>
 			
-			<%
+		</div>
+	</div>
+	
+	<div class="row register-form">
+		<div class="col-md-8 offset-md-2">
+			<form class="custom-form" method="POST" action="ConfermaPrenotazione">
+			
+				<%
+			// l'utente è l'admin
 				if (c.getTipoUtente() == 0) {
 			%>
 			
@@ -70,16 +78,10 @@
 				</div>
 
 			<%
-				// l'utente è l'admin
+				
 				} 
 			%>
 			
-		</div>
-	</div>
-	
-	<div class="row register-form">
-		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" method="POST" action="ConfermaPrenotazione">
 				<h1>Conferma la prenotazione</h1>
 				
 				<input type="hidden" name="checkIn"

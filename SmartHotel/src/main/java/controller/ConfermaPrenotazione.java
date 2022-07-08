@@ -37,10 +37,13 @@ public class ConfermaPrenotazione {
 		int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 		String camera =request.getParameter("numCamera");
 		String intestatario = request.getParameter("intestatario");
+		String intestatarioDaAdmin = request.getParameter("emailIntestatario");
 		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
 		GetTodayDate gtd = new GetTodayDate();
 		Date dataAttuale = checkIn;
 		Prenotazione p = new Prenotazione();
+		PrenotazioneDAOImpl pDao = new PrenotazioneDAOImpl();
+		UtenteDAOImpl uDao = new UtenteDAOImpl();
 		
 		Random rand = new Random();
 		int PIN = 10000 + rand.nextInt(89999);
@@ -49,30 +52,43 @@ public class ConfermaPrenotazione {
 		p.setCheckOut(checkOut);
 		p.setNumOspiti(numOspiti);
 		p.setCamera(camera);
-		p.setIntestatario(intestatario);
 		p.setPrezzo(prezzo);
 		p.setDataPrenotazione(dataAttuale);
 		p.setPINCamera(PIN);
 		
-		PrenotazioneDAOImpl pDao = new PrenotazioneDAOImpl();
-		
-		if (pDao.checkDisponibilita(Integer.parseInt(camera), checkIn,checkOut))
-		{
-			if(pDao.save(p) == 1)
+		if(intestatarioDaAdmin == null) {
+			p.setIntestatario(intestatario);
+			
+			if (pDao.checkDisponibilita(Integer.parseInt(camera), checkIn,checkOut))
 			{
-				mv.addObject("messaggio", "Prenotazione effettuata");
+				if(pDao.save(p) == 1)
+				{
+					mv.addObject("messaggio", "Prenotazione effettuata");
+				}
+				else mv.addObject("messaggio", "Prenotazione fallita");
 			}
-			else mv.addObject("messaggio", "Prenotazione fallita");
+			else mv.addObject("messaggio", "Prenotazione fallita!, camera già prenotata");
+		}else {
+			if(uDao.getbyEmail(intestatarioDaAdmin) != null) {
+				p.setIntestatario(intestatarioDaAdmin);
+				
+				if (pDao.checkDisponibilita(Integer.parseInt(camera), checkIn,checkOut))
+				{
+					if(pDao.save(p) == 1)
+					{
+						mv.addObject("messaggio", "Prenotazione effettuata");
+					}
+					else mv.addObject("messaggio", "Prenotazione fallita");
+				}
+				else mv.addObject("messaggio", "Prenotazione fallita!, camera già prenotata");
+			}else
+				mv.addObject("messaggio", "Utente non registrato!");
 		}
-		else mv.addObject("messaggio", "Prenotazione fallita!, camera già prenotata");
-		
-		
 		
 		
 		return mv;
 		
-		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Login.jsp");
-		//view.forward(request, response);
+	
 	}
 
 	@RequestMapping("ConfermaPrenotazione")
