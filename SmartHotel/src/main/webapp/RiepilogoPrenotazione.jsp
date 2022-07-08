@@ -42,25 +42,38 @@
 					</tr>
 				</thead>
 				<tbody>
-
 					
 					<tr>
-
 						<td><%=checkIn%></td>
 						<td><%=checkOut%></td>
 						<td><%=CameraPrenotazione.getTipo()%></td>
 						<td><%=numOspiti%></td>
 						<td><%=prezzoTotale%> €</td>
-					
-	
-	
-						
 					</tr>
-				
-	
 
 				</tbody>
 			</table>
+			
+			<%
+				if (c.getTipoUtente() == 0) {
+			%>
+			
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label for="validationServer03">E-mail intestatario:</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input type="text" class="form-control" id="emailIntestatario" Name="emailIntestatario"
+							placeholder="test@test.com" required
+							onchange="verify(this.id, this.value)">
+					</div>
+				</div>
+
+			<%
+				// l'utente è l'admin
+				} 
+			%>
+			
 		</div>
 	</div>
 	

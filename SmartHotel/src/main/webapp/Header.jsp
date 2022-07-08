@@ -132,6 +132,7 @@
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<a class="dropdown-item" href="NavAreaPersonale">Area
 							personale</a> <a class="dropdown-item" href="VisualizzaPrenotazioni">Visualizza Prenotazioni</a>
+							<a class="dropdown-item" href="NavAggiungiPrenotazione">Aggiungi Prenotazione</a>
 							<a class="dropdown-item" href="VisualizzaCamere">Visualizza Camere</a>
 							<a class="dropdown-item" href="NavAggiungiCamera">Aggiungi Camera</a>
 							<a class="dropdown-item" href="VisualizzaUtenti">Visualizza Clienti</a>

@@ -372,7 +372,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
 			ps = con.prepareStatement(
-					"SELECT COUNT(idCAMERA),c.* FROM camera c WHERE numPosti >= ? "
+					"SELECT COUNT(idCAMERA), c.* FROM camera c WHERE numPosti >= ? "
 					+ "AND c.prenotabile = 1 AND NOT EXISTS (SELECT * FROM prenotazione p "
 					+ "WHERE p.camera = c.numCamera AND (? >= p.checkIn and ? <= p.checkOut)) GROUP BY  c.tipo");
 			
