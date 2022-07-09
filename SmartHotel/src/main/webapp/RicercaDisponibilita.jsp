@@ -57,8 +57,8 @@
 						</select>
 						</fieldset>
 					</div>
-					
-					</div>
+				</div>
+				
 				<button class="btn btn-secondary" id="submit" Name="submit"
 					type="submit">Submit</button>
 			</form>

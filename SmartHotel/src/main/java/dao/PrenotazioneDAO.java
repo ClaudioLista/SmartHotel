@@ -31,5 +31,7 @@ public interface PrenotazioneDAO {
 	
 	public ArrayList<CameraDisponibile> getCamereDisponibili(Date checkIn, Date checkOut, int NumPosti);
 	
-	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut);	
+	public Boolean checkDisponibilita(int Camera, Date checkIn, Date checkOut);
+
+	public Prenotazione getPrenotazioneAttuale(String intestatario);	
 }

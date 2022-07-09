@@ -230,6 +230,42 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		}
 	}
 	
+	@Override
+	public Prenotazione getPrenotazioneAttuale(String intestatario) {
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			
+			ps = con.prepareStatement("SELECT p.* "
+					+ "FROM prenotazione p WHERE p.intestatario=? AND p.checkInEffettuato=1 AND p.checkOutEffettuato=0;");
+			ps.setString(1, intestatario);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Prenotazione p = new Prenotazione();
+				
+				p.setIdPrenotazione(rs.getInt(1));
+				p.setDataPrenotazione(rs.getDate(2));
+				p.setCheckIn(rs.getDate(3));
+				p.setCheckOut(rs.getDate(4));
+				p.setCamera(rs.getString(5));
+				p.setIntestatario(rs.getString(6));
+				p.setNumOspiti(rs.getInt(7));
+				p.setPrezzo(rs.getDouble(8));
+				p.setCheckInEffettuato(rs.getBoolean(9));
+				p.setCheckOutEffettuato(rs.getBoolean(10));
+				p.setPINCamera(rs.getInt(11));
+				p.setSaldo(rs.getInt(12));
+				p.setDocumento(rs.getString(13));
+
+				return p;
+			}
+			
+			return null;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	// Ricerca prenotazioni per email e data 
 		public ArrayList<Prenotazione> getbyEmailandDate(String email) {
 				try (Connection con = DriverManagerConnectionPool.getConnection()) {
@@ -276,7 +312,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 		public ArrayList<Prenotazione> getbyEmail(String email) {
 			try (Connection con = DriverManagerConnectionPool.getConnection()) {
 				PreparedStatement ps = con.prepareStatement(
-						"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo"
+						"select idPrenotazione,dataPrenotazione,checkIn,checkOut,camera,intestatario,numOspiti,prezzo,checkInEffettuato,checkOutEffettuato,PINCamera,Saldo,DocumentoIntestatario"
 						+ " FROM prenotazione JOIN utente  on  intestatario = email where email=? order by  dataPrenotazione Desc ;");
 				ps.setString(1, email);
 
@@ -298,6 +334,11 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 					p.setIntestatario(rs.getString(6));
 					p.setNumOspiti(rs.getInt(7));
 					p.setPrezzo(rs.getDouble(8));
+					p.setCheckInEffettuato(rs.getBoolean(9));
+					p.setCheckOutEffettuato(rs.getBoolean(10));
+					p.setPINCamera(rs.getInt(11));
+					p.setSaldo(rs.getInt(12));
+					p.setDocumento(rs.getString(13));
 
 					prenotazioniData.add(p);
 					
@@ -374,7 +415,7 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			ps = con.prepareStatement(
 					"SELECT COUNT(idCAMERA), c.* FROM camera c WHERE numPosti >= ? "
 					+ "AND c.prenotabile = 1 AND NOT EXISTS (SELECT * FROM prenotazione p "
-					+ "WHERE p.camera = c.numCamera AND (? >= p.checkIn and ? <= p.checkOut)) GROUP BY  c.tipo");
+					+ "WHERE p.camera = c.numCamera AND (? >= p.checkIn and ? <= p.checkOut)) GROUP BY c.tipo");
 			
 			java.sql.Date checkIndateDB = new java.sql.Date(checkIn.getTime());
 			java.sql.Date checkOutdateDB = new java.sql.Date(checkIn.getTime());

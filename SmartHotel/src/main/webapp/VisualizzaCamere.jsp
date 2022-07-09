@@ -53,9 +53,6 @@
 								<button class="btn action-button" role="button" type="submit">
 									<i class="material-icons">remove_red_eye</i>
 								</button>
-								
-								<button class="btn btn-secondary" type="submit" Name="submit"
-								id="submit">Modifica Camera</button>
 						
 							</form>
 						</th>

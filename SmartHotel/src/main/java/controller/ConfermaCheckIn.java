@@ -32,7 +32,7 @@ public class ConfermaCheckIn {
 			throws ServletException, IOException {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("Homepage.jsp");
+		mv.setViewName("StoricoPrenotazioni.jsp");
 		
 		int idPrenotazione =  Integer.parseInt(request.getParameter("idPrenotazione1"));
 		String emailInt = request.getParameter("emailIntestatario");

@@ -13,6 +13,9 @@ public class Utente {
 	private String telefono;
 	private String indirizzo;
 	private int tipoUtente;
+	//tipoUtente = 0 >> ADMIN
+	//tipoUtente = 1 >> CLIENTE
+	//tipoUtente = 2 >> ADDETTO BAR
 
 	public Utente() {
 		

@@ -8,6 +8,44 @@ public class Prenotazione {
 	private Date dataPrenotazione;
 	private Date checkIn;
 	private Date checkOut;
+	private String camera;
+	private String intestatario;
+	private int numOspiti;
+	private double prezzo;
+	private int PINCamera;
+	private boolean CheckInEffettuato;
+	private boolean CheckOutEffettuato;
+	private int saldo;
+	private String documento;
+	
+	
+	public Prenotazione(int idPrenotazione, Date dataPrenotazione, Date checkIn, Date checkOut, String camera,
+			String intestatario, int numOspiti, double prezzo, int pINCamera, boolean checkInEffettuato,
+			boolean checkOutEffettuato, int saldo, String documento) {
+		super();
+		this.idPrenotazione = idPrenotazione;
+		this.dataPrenotazione = dataPrenotazione;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.camera = camera;
+		this.intestatario = intestatario;
+		this.numOspiti = numOspiti;
+		this.prezzo = prezzo;
+		PINCamera = pINCamera;
+		CheckInEffettuato = checkInEffettuato;
+		CheckOutEffettuato = checkOutEffettuato;
+		this.saldo = saldo;
+		this.documento = documento;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
 	public int getPINCamera() {
 		return PINCamera;
 	}
@@ -40,15 +78,6 @@ public class Prenotazione {
 		this.saldo = saldo;
 	}
 
-	private String camera;
-	private String intestatario;
-	private int numOspiti;
-	private double prezzo;
-	private int PINCamera;
-	private boolean CheckInEffettuato;
-	private boolean CheckOutEffettuato;
-	private int saldo;
-	
 	public Prenotazione() {
 		
 	}

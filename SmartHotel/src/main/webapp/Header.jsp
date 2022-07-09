@@ -61,10 +61,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a href="NavCamere" id="elementoL">Camere</a>
-				</li>
-				<li class="nav-item active"><a href="NavHotel">Hotel</a>
-				</li>
 				<li class="nav-item active"><a href="NavPrenotaCamera">Prenota una Camera</a>
 				</li>
 			</ul>
@@ -109,8 +105,11 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<a class="dropdown-item" href="NavAreaPersonale">Area
-							personale</a> <a class="dropdown-item" href="NavStoricoPrenotazioni">Storico
+							personale</a> 
+						<a class="dropdown-item" href="NavStoricoPrenotazioni">Storico
 							prenotazioni</a>
+						<a class="dropdown-item" href="NavMenu">Menù</a>	
+						<a class="dropdown-item" href="NavMieiOrdini">I miei ordini</a>
 					</div>
 				</div>
 			</span>

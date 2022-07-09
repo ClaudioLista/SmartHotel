@@ -1,3 +1,4 @@
+<%@page import="ch.qos.logback.core.net.SyslogOutputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -55,8 +56,6 @@
 					<tr>
 						<th style="display: ruby block"># <%=k%> <%=""%>
 
-						
-
 						</th>
 						<td><%=p.getDataPrenotazione()%></td>
 						<td><%=p.getCheckIn()%></td>
@@ -65,30 +64,50 @@
 						<td><%=p.getNumOspiti()%></td>
 						<td><%=p.getPrezzo()%> €</td>
 						
-						<%
+					<%
+					
 						GetTodayDate gtd = new GetTodayDate();
 						String dataString = gtd.main();
 						Date data = Date.valueOf(dataString);
 						long diff = p.getCheckIn().getTime()-data.getTime();
 						TimeUnit time = TimeUnit.DAYS; 
 				        long numeroGiorni = time.convert(diff, TimeUnit.MILLISECONDS);
-						
-						if(numeroGiorni<=1 ) {
+				        
+				        boolean checkInEffettuato = p.isCheckInEffettuato();
+				        
+						if(numeroGiorni <= 1 && !checkInEffettuato) {
 					%>
+					
 						<td>
 						
 						<form action="EffettuaCheckIn" method="POST">
-								<input type="hidden" name="idPrenotazione"
-									value="<%=p.getIdPrenotazione()%>">
+							<input type="hidden" name="idPrenotazione"
+								value="<%=p.getIdPrenotazione()%>">
 														
 						
 						<button class="btn btn-secondary" type="submit" Name="submit"
 							id="submit">Effettua Check-In</button>
 						</td>
-						<%
-						}
 						
-					%>							
+					<%
+					} else if (checkInEffettuato) {
+						
+					%>	
+					
+						<td>
+						
+						<form action="NavPinCamera" method="POST">
+							<input type="hidden" name="pinCamera"
+								value="<%=p.getPINCamera()%>">
+						
+						<button class="btn btn-secondary" type="submit" Name="submit"
+							id="submit">Visualizza il tuo PIN!</button>
+						</td>
+					
+					<%
+					} 
+						
+					%>								
 					</tr>
 					<%
 						k++;
