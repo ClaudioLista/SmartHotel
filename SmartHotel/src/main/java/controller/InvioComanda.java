@@ -55,13 +55,21 @@ public class InvioComanda {
 		
 		double totale = 0;
 		
+		int i = 0;
 		for (Prodotto p : listaProdotti) {
 			
 			String temp = request.getParameter(String.valueOf(p.getIdProdotto()));
 			
 			if (Integer.parseInt(temp) != 0) {
-				ordineString = ordineString + p.getNome() + ": " + temp + ", ";
+				
+				if (i == listaProdotti.size() - 1) {
+					ordineString = ordineString + p.getNome() + ": " + temp;
+				} else {
+					ordineString = ordineString + p.getNome() + ": " + temp + ", ";
+				}
+				i++;
 				totale = totale + (p.getPrezzo()*Integer.parseInt(temp));
+				
 			}
 			
 		}
@@ -79,11 +87,23 @@ public class InvioComanda {
 
 		ComandaDAOImpl comDaoImpl = new ComandaDAOImpl();
 		
-		if(comDaoImpl.save(comanda) == 1)
-		{
-			mv.addObject("messaggio", "Ordine inviato con successo.");
+		if (totale == 0) {
+			
+			mv.addObject("messaggio", "Ordine vuoto.");
+			
+		} else {
+			
+			if(comDaoImpl.save(comanda) == 1)
+			{
+				mv.addObject("messaggio", "Ordine inviato con successo.");
+			}
+			else mv.addObject("messaggio", "Ordine fallito.");
 		}
-		else mv.addObject("messaggio", "Ordine fallito.");
+		
+		ComandaDAOImpl comDaoImpl1 = new ComandaDAOImpl(); 
+		ArrayList<Comanda> ordini = comDaoImpl1.listAttive(prenotazioneAttuale.getIntestatario());
+
+		mv.addObject("listaOrdini", ordini);
 		
 		return mv;
 	}

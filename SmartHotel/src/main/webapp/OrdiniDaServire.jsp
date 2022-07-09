@@ -1,4 +1,3 @@
-<%@page import="dao.UtenteDAOImpl"%>
 <%@page import="ch.qos.logback.core.net.SyslogOutputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,17 +14,14 @@
 <%@	page import="model.Prenotazione"%>
 <%@	page import="model.Comanda"%>
 <%@ page import="dao.CameraDAOImpl" %>
-<%@ page import="dao.UtenteDAOImpl" %>
 <%@ page import="dao.GetTodayDate" %>
 
 <%
-	String pageTitle = "Storico Ordini";
+	String pageTitle = "Ordini da servire";
 	request.setAttribute("pageTitle", pageTitle);
 	Utente c = (Utente) session.getAttribute("utente");
 	ArrayList<Comanda> listaOrdini = (ArrayList<Comanda>) request.getAttribute("listaOrdini");
 	CameraDAOImpl camDAO = new CameraDAOImpl();
-	UtenteDAOImpl uDaoImpl = new UtenteDAOImpl();
-	Utente addetto = new Utente();
 %>
 
 <jsp:include page="Header.jsp" />
@@ -44,9 +40,10 @@
 					<tr>
 						<th># Ordine</th>
 						<th>Data Ordine</th>
+						<th>Camera</th>
 						<th>Riepilogo</th>
 						<th>Totale</th>
-						<th>Servito da</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,25 +57,24 @@
 
 						</th>
 						<td><%=com.getDataOrdine()%></td>
+						<td><%=com.getNumCamera()%></td>
 						<td><%=com.getOrdine()%></td>
 						<td><%=com.getTotale()%> €</td>
+						<td>
 						
-						<%
-							if (com.isServito()) { 
-							addetto = uDaoImpl.getbyEmail(com.getDipendenteBar());
-						%>
+						<form action="ComandaServita" method="POST">
 						
-						<td><%=addetto.getNome() + " " + addetto.getCognome()%></td>
+							<input type="hidden" name="idPrenotazione"
+								value="<%=com.getIdOrdine()%>">
+							<input type="hidden" name="addettoBar"
+								value="<%=c.getEmail()%>">								
 						
-						<% } else { %>
-						
-						<td>In attesa...</td>
-						
-						<% } %>
+						<button class="btn btn-secondary" type="submit" Name="submit"
+							id="submit">Accetta ordine</button>
+						</td>
 										
 					</tr>
 					<%
-							
 						k++;
 						}
 					%>

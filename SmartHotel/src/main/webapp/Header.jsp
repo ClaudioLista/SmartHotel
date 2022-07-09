@@ -59,13 +59,31 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarText">
+		<div class="collapse navbar-collapse" id="navbarText">	
+
 			<ul class="navbar-nav mr-auto">
+			
+				<%
+					if (c == null || c.getTipoUtente() == 1) {
+					
+				%>
 				<li class="nav-item active"><a href="NavPrenotaCamera">Prenota una Camera</a>
 				</li>
+				<%
+					}
+				%>
+				
+				<%
+					if (c != null && c.getTipoUtente() == 2) {
+					
+				%>
+				<li class="nav-item active"><a href="NavOrdiniDaServire">Ordini da servire</a>
+				</li>
+				<%
+					}
+				%>
 			</ul>
-
-
+			
 			<!-- se l utente non è  registrato -->
 			<%
 				if (c == null) {
@@ -141,7 +159,7 @@
 
 
 			<%
-				// l'utente è amministratore di dipartimento
+				// l'utente è un barista
 				} else if (c.getTipoUtente() == 2) {
 			%>
 			<span class="navbar-text actions"> <a class="login"
@@ -155,45 +173,18 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 						<a class="dropdown-item" href="NavAreaPersonale">Area
-							personale</a> <a class="dropdown-item" href="NavStoricoPrenotazioni">Storico
-							prenotazioni</a> <a class="dropdown-item"
-							href="NavRichiestePrenotazioni">Richieste prenotazione</a>
+							personale</a> 
+						<a class="dropdown-item"
+							href="NavOrdiniServire">Ordini da servire</a>
 					</div>
 				</div>
 			</span>
 
 
 			<%
-				// l'utente è amministratore ateneo
-				} else if (c.getTipoUtente() == 3) {
+				} 
 			%>
-			<span class="navbar-text actions"> <a class="login"
-				href="Logout">Log Out</a>
-			</span> <span class="navbar-text actions">
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="material-icons">face</i>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="NavAreaPersonale">Area personale</a><a class="dropdown-item" href="NavElencoUtenti">Elenco
-							utenti</a> <a class="dropdown-item" href="NavCreaEdificio">Crea
-							edificio</a> <a class="dropdown-item" href="NavRimuoviEdificio">Rimuovi
-							edificio</a> <a class="dropdown-item" href="NavCreaDipartimento">Crea
-							Dipartimento</a> <a class="dropdown-item"
-							href="NavEliminaDipartimento">Rimuovi Dipartimento</a> <a
-							class="dropdown-item" href="NavCreaAula">Crea aula</a> <a
-							class="dropdown-item" href="NavEliminaAula">Rimuovi aula</a> <a
-							class="dropdown-item" href="NavScegliAmministratore">Scegli
-							Amministratore</a>
-
-					</div>
-				</div>
-			</span>
-			<%
-				}
-			%>
+			
 		</div>
 	</nav>
 	

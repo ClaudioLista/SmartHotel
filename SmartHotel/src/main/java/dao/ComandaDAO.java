@@ -9,5 +9,7 @@ public interface ComandaDAO {
 
 	public int save(Comanda comanda);
 	public ArrayList<Comanda> listAttive(String intestatario);
+	ArrayList<Comanda> listNonServiti();
+	int update(int idComanda, String addettoBar);
 	
 }

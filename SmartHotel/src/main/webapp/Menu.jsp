@@ -1,9 +1,11 @@
+<%@page import="ch.qos.logback.core.net.SyslogOutputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@	page import="model.Utente"%>
+<%@	page import="javax.servlet.http.HttpServletRequest"%>
 <%@	page import="java.util.ArrayList"%>
 <%@	page import="model.Prodotto"%>
 
@@ -50,7 +52,7 @@
 							<div class="form-row form-group">
 								<div class="col-sm-6 input-column">
 									<input type="text" class="form-control" id=<%=p.getIdProdotto()%>
-										Name=<%=p.getIdProdotto()%> placeholder=""/>
+										Name=<%=p.getIdProdotto()%> value=0 placeholder="">
 								</div>
 							</div>
 						</td>
@@ -65,8 +67,9 @@
 			
 			<input type="hidden" name="intestatario"
 						value="<%=c.getEmail()%>">
+			
 			<button class="btn btn-secondary" type="submit" Name="submit"
-					id="submit">Invia ordine!</button>
+			id="submit">Invia ordine!</button>
 			
 			</form>
 			

@@ -80,4 +80,59 @@ public class ComandaDAOImpl implements ComandaDAO {
 
 	}
 	
+	@Override
+	public ArrayList<Comanda> listNonServiti() {
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("SELECT * FROM comanda where servito = false;");
+			ArrayList<Comanda> listaOrdini = new ArrayList<Comanda>();
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Comanda c = new Comanda();
+
+				c.setIdOrdine(rs.getInt(1));
+				c.setIdPrenotazione(rs.getInt(2));
+				c.setIntestararioOrdine(rs.getString(3));
+				c.setNumCamera(rs.getString(4));
+				c.setDipendenteBar(rs.getString(5));
+				
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+				String strDate = dateFormat.format(rs.getDate(6));  
+				
+				c.setDataOrdine(strDate);
+				c.setServito(rs.getBoolean(7));
+				c.setOrdine(rs.getString(8));
+				c.setTotale(rs.getDouble(9));
+
+				listaOrdini.add(c);
+			}
+			
+			return listaOrdini;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
+	@Override
+	public synchronized int update(int idComanda, String addettoBar) {
+		PreparedStatement ps = null;
+		
+		try (Connection conn = DriverManagerConnectionPool.getConnection()) {
+			ps = conn.prepareStatement("UPDATE comanda SET servito=1, dipendente=? WHERE idcomanda=?;");
+			
+			ps.setString(1, addettoBar);
+			ps.setInt(2, idComanda);
+				
+			int rs = ps.executeUpdate();
+			return rs;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
