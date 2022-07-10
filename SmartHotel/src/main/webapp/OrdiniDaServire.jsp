@@ -27,9 +27,6 @@
 <jsp:include page="Header.jsp" />
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 <!--INIZIO CONTAINER CENTRALE-->
 <div id="container-centrale">
@@ -69,8 +66,10 @@
 							<input type="hidden" name="addettoBar"
 								value="<%=c.getEmail()%>">								
 						
-						<button class="btn btn-secondary" type="submit" Name="submit"
+							<button class="btn btn-secondary" type="submit" Name="submit"
 							id="submit">Accetta ordine</button>
+							
+							</form>
 						</td>
 										
 					</tr>

@@ -21,9 +21,6 @@
 <jsp:include page="Header.jsp" />
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 <!--INIZIO CONTAINER CENTRALE-->
 <div id="container-centrale">
@@ -77,6 +74,7 @@
 						<td><%=cam.getDisponibilita()%></td>
 						<td>
 							<form action="PrenotaCamera" method="POST">
+							
 								<input type="hidden" name="idCamera"
 									value="<%=cam.getListaCamere().getIdCamera()%>">
 								<input type="hidden" name="checkIn"
@@ -85,13 +83,15 @@
 									value="<%=checkOut%>">
 								<input type="hidden" name="numOspiti"
 									value="<%=numOspiti%>">
-						
 						<%
 							// l'utente è loggato
 							if (c != null) {
 						%>									
-						<button class="btn btn-secondary" type="submit" Name="submit"
+							<button class="btn btn-secondary" type="submit" Name="submit"
 							id="submit">Prenota</button>
+							
+							</form>
+							
 							</td>
 						<%
 							// l'utente è loggato

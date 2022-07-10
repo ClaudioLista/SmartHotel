@@ -14,12 +14,10 @@
 	Utente c = (Utente) session.getAttribute("utente");
 	String result = request.getParameter("result");
 	int PIN = Integer.parseInt(request.getParameter("pinCamera"));
+	String numCamera = request.getParameter("numCamera");
 %>
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 
 <!--INIZIO CONTAINER CENTRALE-->
@@ -36,7 +34,20 @@
 				<tbody>
 					<tr>
 						<td><%=PIN%></td>
-						<td>Il seguente PIN potrà essere usato per accedere alla propria stanza.</td>
+						<td>Il seguente PIN potrà essere usato per accedere alla propria camera.</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Il numero della tua camera:</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%=numCamera%></td>
 					</tr>
 				</tbody>
 			</table>

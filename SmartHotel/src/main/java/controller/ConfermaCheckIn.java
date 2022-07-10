@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 //import javax.servlet.RequestDispatcher;
@@ -14,10 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.ComandaDAOImpl;
 import dao.DocumentoDAOImpl;
 import dao.GetTodayDate;
 import dao.PrenotazioneDAOImpl;
 import dao.UtenteDAOImpl;
+import model.Comanda;
 import model.Documento;
 import model.Prenotazione;
 import model.Utente;
@@ -26,7 +29,6 @@ import java.util.Random;
 
 @Controller
 public class ConfermaCheckIn {
-	//private static final long serialVersionUID = 1L;
 	
 	protected ModelAndView doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,15 +53,24 @@ public class ConfermaCheckIn {
 			mv.addObject("messaggio", "Check-In effettuato");
 		}
 		else mv.addObject("messaggio", "Check-In fallito");
-		
 
-		GetTodayDate gtd = new GetTodayDate();		
-		PrenotazioneDAOImpl pDao = new PrenotazioneDAOImpl();
+		PrenotazioneDAOImpl prenDAO = new PrenotazioneDAOImpl(); 
+		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyEmail(emailInt);
+		
+		ComandaDAOImpl comDaoImpl = new ComandaDAOImpl(); 
+		ArrayList<Comanda> ordini = comDaoImpl.listAttive(emailInt);
+		
+		double totaleOrdini = 0;
+		
+		for (Comanda comanda : ordini) {
+			totaleOrdini = totaleOrdini + comanda.getTotale();
+		}
+		
+		mv.addObject("totaleOrdini", totaleOrdini);
+		mv.addObject("listaPrenotazioni", listaPrenotazioni);
 		
 		return mv;
-		
-		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Login.jsp");
-		//view.forward(request, response);
+
 	}
 
 	@RequestMapping("ConfermaCheckIn")

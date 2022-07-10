@@ -320,11 +320,6 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					Prenotazione p = new Prenotazione();
-
-					//TENTATIVO : data inizialmente passata come stringa, ma poi l'ho passata tramite Date
-					//Date data_prenot= new SimpleDateFormat("dd/MM/yyyy").parse(data);
-//					SimpleDateFormat data_formatter =new SimpleDateFormat("dd/MM/yyyy");  
-//					Date data_prenot = data_formatter.parse(data);
 					
 					p.setIdPrenotazione(rs.getInt(1));
 					p.setDataPrenotazione(rs.getDate(2));
@@ -410,8 +405,14 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 	@Override
 	public ArrayList<CameraDisponibile> getCamereDisponibili(Date checkIn, Date checkOut, int NumPosti) {
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 		
 		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			
+			ps2 = con.prepareStatement("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+			
+			ps2.execute();
+			
 			ps = con.prepareStatement(
 					"SELECT COUNT(idCAMERA), c.* FROM camera c WHERE numPosti >= ? "
 					+ "AND c.prenotabile = 1 AND NOT EXISTS (SELECT * FROM prenotazione p "

@@ -21,14 +21,12 @@
 	Utente c = (Utente) session.getAttribute("utente");
 	ArrayList<model.Prenotazione> listaPrenotazioni = (ArrayList<model.Prenotazione>) request.getAttribute("listaPrenotazioni");
 	CameraDAOImpl camDAO = new CameraDAOImpl();
+	double totaleOrdini = (double) request.getAttribute("totaleOrdini");
 %>
 
 <jsp:include page="Header.jsp" />
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 <!--INIZIO CONTAINER CENTRALE-->
 <div id="container-centrale">
@@ -44,6 +42,7 @@
 						<th>Tipo Camera</th>
 						<th>Num Ospiti</th>
 						<th>Prezzo</th>
+						<th>Totale servizio in camera</th>
 						<th> </th>
 					</tr>
 				</thead>
@@ -63,9 +62,13 @@
 						<td><%=camDAO.getbyNumCamera(Integer.parseInt(p.getCamera())).getTipo()%></td>
 						<td><%=p.getNumOspiti()%></td>
 						<td><%=p.getPrezzo()%> €</td>
+						<% if(p.isCheckInEffettuato() && !p.isCheckOutEffettuato()) { %>
+						<td><%=totaleOrdini%> €</td>
+						<% } else { %>
+						<td>-</td>
+						<% } %>
 						
 					<%
-					
 						GetTodayDate gtd = new GetTodayDate();
 						String dataString = gtd.main();
 						Date data = Date.valueOf(dataString);
@@ -82,11 +85,12 @@
 						
 						<form action="EffettuaCheckIn" method="POST">
 							<input type="hidden" name="idPrenotazione"
-								value="<%=p.getIdPrenotazione()%>">
-														
+								value="<%=p.getIdPrenotazione()%>">						
 						
 						<button class="btn btn-secondary" type="submit" Name="submit"
 							id="submit">Effettua Check-In</button>
+							
+							</form>
 						</td>
 						
 					<%
@@ -97,11 +101,17 @@
 						<td>
 						
 						<form action="NavPinCamera" method="POST">
+						
 							<input type="hidden" name="pinCamera"
 								value="<%=p.getPINCamera()%>">
+
+							<input type="hidden" name="numCamera"
+							value="<%=p.getCamera()%>">
 						
 						<button class="btn btn-secondary" type="submit" Name="submit"
 							id="submit">Visualizza il tuo PIN!</button>
+						
+						</form>
 						</td>
 					
 					<%

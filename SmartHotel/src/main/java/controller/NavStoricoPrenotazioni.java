@@ -1,10 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.nio.channels.NonReadableChannelException;
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.ComandaDAOImpl;
 //import dao.PrenotazioneDAO;
 import dao.PrenotazioneDAOImpl;
 import model.*;
@@ -45,10 +48,17 @@ public class NavStoricoPrenotazioni {
 		//ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyDate(c.getEmail(), dtf.format(localDate));
 		ArrayList<model.Prenotazione> listaPrenotazioni = prenDAO.getbyEmail(c.getEmail());
 
+		ComandaDAOImpl comDaoImpl = new ComandaDAOImpl(); 
+		ArrayList<Comanda> ordini = comDaoImpl.listAttive(c.getEmail());
+		
+		double totaleOrdini = 0;
+		
+		for (Comanda comanda : ordini) {
+			totaleOrdini = totaleOrdini + comanda.getTotale();
+		}
+		
+		mv.addObject("totaleOrdini", totaleOrdini);
 		mv.addObject("listaPrenotazioni", listaPrenotazioni);
-
-		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/StoricoPrenotazioni.jsp");
-		//view.forward(request, response);
 		
 		return mv;
 	}

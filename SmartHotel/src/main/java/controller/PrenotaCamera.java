@@ -32,14 +32,15 @@ public class PrenotaCamera {
 		Date checkOut = Date.valueOf(request.getParameter("checkOut"));
 		int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 		String camera =request.getParameter("idCamera");
-
+		
+		System.out.println(camera);
 				
 		CameraDAOImpl cameraDAO = new CameraDAOImpl();
 		Camera CameraPrenotazione = cameraDAO.get(camera);
 		double prezzoCamera = CameraPrenotazione.getPrezzo();
 		long diff = checkOut.getTime() - checkIn.getTime();
 		TimeUnit time = TimeUnit.DAYS; 
-		long numeroNotti = time.convert(diff, TimeUnit.MILLISECONDS);
+		int numeroNotti = (int) time.convert(diff, TimeUnit.MILLISECONDS);
 		double prezzoTotale = numeroNotti*prezzoCamera;
 		System.out.println("PrezzoTotale: "+prezzoTotale);
 		

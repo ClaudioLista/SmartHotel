@@ -13,9 +13,6 @@
 <jsp:include page="Header.jsp" />
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 
 <!--INIZIO CONTAINER CENTRALE-->
@@ -62,20 +59,17 @@
 									value="<%=idPrenotazione%>">
 					<input type="hidden" name="emailIntestatario"
 									value="<%=c.getEmail()%>">
+					
 					<button class="btn btn-secondary" id="submit" Name="submit"
 					type="submit">Submit</button>	
+					
+					</form>
+					
 					</div>
 
 				</div>
 
 			</div>
-				
-			</form>
-			</div>
-			</div>	
-	</div>
-				
-</div>
 <!--FINE CONTAINER CENTRALE-->
 
 <jsp:include page="Footer.jsp" />

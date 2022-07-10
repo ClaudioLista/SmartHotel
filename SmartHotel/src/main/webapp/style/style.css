@@ -17,18 +17,18 @@ body {
 }
 
 .container {
-    width: 100%;
-    padding-right: 5%;
-    padding-left: 5%;
-    margin-right: auto;
-    margin-left: auto;
+	width: 100vw;
+	position: relative;
+	margin-top: -30px;
+	left: 50%;
+    background: rgb(245, 245, 245);
 }
 
 nav {
     background-color: white;
-    -webkit-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
-    -moz-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
-    box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
+    -webkit-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.1);
+    box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.1);
 }
 
 nav .navbar-brand {
@@ -42,7 +42,32 @@ nav .navbar-brand img{
 
 #navbarText .navbar-text {
     display: block ruby;
-    padding-right: 10%;
+    padding-right: 15%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 12px 12px 12px;
+  display: block;
+}
+
+.dropdown-menu.show {
+	margin-top: 10px;
+	border-radius: 15px;
+	padding-right: 30px;
+  	width: 220px;
+}
+
+.dropdown-menu a:hover {
+	border-radius: 15px;
+	background-color: #f1f1f1;
 }
 
 #navbarText a {
@@ -65,8 +90,8 @@ nav .navbar-brand img{
 #navbarText .nav-item {
     line-height: 1;
     display: inline-block;
-    color:#fa6661;
-    text-decoration:none;
+    color: #fa6661;
+    text-decoration: none;
     cursor: pointer;
     padding: 10px 0 10px 0;
 }
@@ -78,7 +103,7 @@ nav .navbar-brand img{
     width: 0%;
     background-color: #fa6661;
     transition: width .5s ease-in-out;
-    max-width: 130px;
+    max-width: 200px;
 }
 
 #navbarText .nav-item:hover:after, .nav-item:focus:after{
@@ -95,9 +120,8 @@ nav .navbar-brand img{
 }
 
 #container-centrale {
-    background: #f1f7fc;
+    background: rgb(245, 245, 245);
     padding: 4% 20% 4% 20%;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 hr {
@@ -111,13 +135,6 @@ hr {
     -webkit-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
     -moz-box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
     box-shadow: 5px 10px 22px 1px rgba(0,0,0,0.29);
-}
-
-#container-centrale-back {
-	text-align: center;
-    background-image: url("../img/curio.png");
-  	background-repeat: no-repeat;
-  	background-position: center; /* Center the image */
 }
 
 footer .social {
@@ -200,34 +217,24 @@ footer .social a {
     text-align: center;
     font-size: 13px;
     color: #aaa;
-    margin-bottom: 0;
+    margin-bottom: 10;
 }
 
 #calendar-background .calendar {
   width: auto;
   max-width: 500px;
   margin: auto;
-  transition: opacity 1s;
-  transition: 1s;
-}
-
-#calendar-background .calendar:hover {
-    transform: scale(1.5);
-    opacity: 0;
-}
-
-#calendar-background .calendar:active {
-    opacity: 0;
 }
 
 .calendar h5 {
   color: white;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 900;
   letter-spacing: 2px;
   padding: 7px 60px 7px 60px;
   background-color: #fa6661;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .calendar h2 {
@@ -244,6 +251,7 @@ footer .social a {
 }
 
 #container-tabelle .table {
+	width: 100%;
     background: white;
     color: #4b4c4d;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);

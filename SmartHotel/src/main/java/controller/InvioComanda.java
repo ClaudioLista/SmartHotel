@@ -54,28 +54,20 @@ public class InvioComanda {
 		String ordineString = new String();
 		
 		double totale = 0;
-		
-		int i = 0;
 		for (Prodotto p : listaProdotti) {
 			
 			String temp = request.getParameter(String.valueOf(p.getIdProdotto()));
 			
 			if (Integer.parseInt(temp) != 0) {
 				
-				if (i == listaProdotti.size() - 1) {
-					ordineString = ordineString + p.getNome() + ": " + temp;
-				} else {
-					ordineString = ordineString + p.getNome() + ": " + temp + ", ";
-				}
-				i++;
+				ordineString = ordineString + p.getNome() + ": " + temp + "; ";
 				totale = totale + (p.getPrezzo()*Integer.parseInt(temp));
 				
 			}
 			
 		}
 		
-		//System.out.println(ordineString);
-		//System.out.println(totale);
+		ordineString = ordineString.substring(0, ordineString.length() - 2); 
 		
 		PrenotazioneDAOImpl pDaoImpl = new PrenotazioneDAOImpl();
 		Prenotazione prenotazioneAttuale = pDaoImpl.getPrenotazioneAttuale(request.getParameter("intestatario"));

@@ -14,9 +14,6 @@
 %>
 
 <div class="container" style="padding-top: 180px">
-	<p>
-		<span><%=pageTitle%></span>
-	</p>
 </div>
 
 <!--INIZIO CONTAINER CENTRALE-->
