@@ -15,7 +15,7 @@ public class Prenotazione {
 	private int PINCamera;
 	private boolean CheckInEffettuato;
 	private boolean CheckOutEffettuato;
-	private int saldo;
+	private double saldo;
 	private String documento;
 	
 	
@@ -70,7 +70,7 @@ public class Prenotazione {
 		CheckOutEffettuato = checkOutEffettuato;
 	}
 
-	public int getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 

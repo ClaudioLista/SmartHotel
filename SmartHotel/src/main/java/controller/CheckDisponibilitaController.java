@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.CameraDAOImpl;
+import dao.GetTodayDate;
 import dao.PrenotazioneDAOImpl;
 import dao.UtenteDAOImpl;
 import model.Utente;
@@ -30,6 +31,9 @@ public class CheckDisponibilitaController {
 		
 		String checkInString = request.getParameter("check-in");
 		Date checkIn = Date.valueOf(checkInString);
+		GetTodayDate gtd = new GetTodayDate();
+		Date data_attuale = Date.valueOf(gtd.main());
+		
 		
 		if (checkIn == null)
 			mv.addObject("messaggio", "Errore, campo Check-In non compilato");
@@ -42,12 +46,17 @@ public class CheckDisponibilitaController {
 		if (checkOut == null)
 			mv.addObject("messaggio", "Errore, campo Check-Out non compilato");	
 		
-		if (checkOut.getTime()-checkIn.getTime()<=0)
+		if (checkOut.getTime()-checkIn.getTime()<=0 )
 		{
 			mv.addObject("messaggio", "Errore, il Check-Out deve venire dopo il Check-In");
 			mv.setViewName("RicercaDisponibilita.jsp");
 		}
 		
+		else if (checkIn.getTime()-data_attuale.getTime()<=0 )
+		{
+			mv.addObject("messaggio", "Inserire una data corretta");
+			mv.setViewName("RicercaDisponibilita.jsp");
+		}
 		else {
 		String NumOspitiString = request.getParameter("numOspiti");
 		int NumOspiti = Integer.valueOf(NumOspitiString);
