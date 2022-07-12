@@ -28,7 +28,9 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="numCamera"
-							Name="numCamera" placeholder="XXX"/>
+							Name="numCamera" placeholder="XXX" required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
 					</div>
 				</div>
 
@@ -38,7 +40,10 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="tipoCamera"
-							Name="tipoCamera" placeholder="Doppia Standard"/>
+							Name="tipoCamera" placeholder="Doppia Standard"
+							required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
 					</div>
 				</div>
 				
@@ -64,7 +69,9 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="dimCamera"
-							Name="dimCamera" placeholder="xx mq"/>
+							Name="dimCamera" placeholder="xx mq" required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
 					</div>
 				</div>
 				
@@ -74,7 +81,9 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="desCamera"
-							Name="desCamera" placeholder=""/>
+							Name="desCamera" placeholder="" required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
 					</div>
 				</div>
 				
@@ -84,7 +93,9 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="prezzoCamera"
-							Name="prezzoCamera" placeholder=""/>
+							Name="prezzoCamera" placeholder="" required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
 					</div>
 				</div>
 				

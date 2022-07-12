@@ -41,19 +41,14 @@
 					</div>
 					<div class="col-sm-6 input-column">
 						<input type="text" class="form-control" id="numDoc"
-							placeholder="Numero documento" Name="numDoc"
-							>
+							placeholder="Numero documento" Name="numDoc" required
+							onchange="verify(this.id, this.value)">
+						<div class="invalid-feedback">Da 2 a 25 caratteri</div>
+							
 							</div>
 							
 							
-						<div class="col-sm-4 label-column">
-						<label for="validationServer03">Foto Carta</label>
-					</div>
-					<div class="col-sm-6 input-column">
-						<input type="file" class="form-control" id="pathImmagine"
-							placeholder="Foto documento" Name="pathImmagine"
-							>
-							</div>
+						
 					</div>
 					<input type="hidden" name="idPrenotazione1"
 									value="<%=idPrenotazione%>">

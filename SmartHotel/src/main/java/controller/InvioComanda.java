@@ -63,11 +63,18 @@ public class InvioComanda {
 				ordineString = ordineString + p.getNome() + ": " + temp + "; ";
 				totale = totale + (p.getPrezzo()*Integer.parseInt(temp));
 				
+			    totale = Math.round(totale*100.0)/100.0;
+				System.out.println(totale);
+				
 			}
 			
 		}
+		if (totale != 0) {
+			
+			ordineString = ordineString.substring(0, ordineString.length() - 2); 
+			
+		}
 		
-		ordineString = ordineString.substring(0, ordineString.length() - 2); 
 		
 		PrenotazioneDAOImpl pDaoImpl = new PrenotazioneDAOImpl();
 		Prenotazione prenotazioneAttuale = pDaoImpl.getPrenotazioneAttuale(request.getParameter("intestatario"));
@@ -76,7 +83,9 @@ public class InvioComanda {
 		comanda.setOrdine(ordineString);
 		comanda.setTotale(totale);
 		comanda.setIdPrenotazione(prenotazioneAttuale.getIdPrenotazione());
-
+		
+		double saldo = prenotazioneAttuale.getSaldo();
+		saldo = saldo + totale;
 		ComandaDAOImpl comDaoImpl = new ComandaDAOImpl();
 		
 		if (totale == 0) {
@@ -88,6 +97,7 @@ public class InvioComanda {
 			if(comDaoImpl.save(comanda) == 1)
 			{
 				mv.addObject("messaggio", "Ordine inviato con successo.");
+				pDaoImpl.updateSaldo(prenotazioneAttuale.getIdPrenotazione(), saldo);
 			}
 			else mv.addObject("messaggio", "Ordine fallito.");
 		}

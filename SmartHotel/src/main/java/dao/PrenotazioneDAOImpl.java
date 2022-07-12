@@ -76,6 +76,20 @@ public class PrenotazioneDAOImpl implements PrenotazioneDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	public synchronized int updateSaldo(int idprenotazione,double saldo) {
+		PreparedStatement ps = null;
+		
+		try (Connection con = DriverManagerConnectionPool.getConnection()) {
+			ps = con.prepareStatement("UPDATE prenotazione SET saldo = ? WHERE idPrenotazione=? ;");
+			ps.setInt(2,idprenotazione);
+			ps.setDouble(1, saldo);
+		
+			int rs =ps.executeUpdate();
+			return rs;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Override
 	public synchronized int updateData(int idPrenotazione, Date checkIn, Date checkOut) {

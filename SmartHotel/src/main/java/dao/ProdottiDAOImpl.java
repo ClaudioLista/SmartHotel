@@ -25,7 +25,7 @@ public class ProdottiDAOImpl implements ProdottiDAO {
 				
 				p.setIdProdotto(rs.getInt(1));
 				p.setNome(rs.getString(2));
-				p.setPrezzo(rs.getInt(3));
+				p.setPrezzo(rs.getDouble(3));
 				p.setQuantita(rs.getInt(5));
 				p.setTipologia(rs.getString(4));
 

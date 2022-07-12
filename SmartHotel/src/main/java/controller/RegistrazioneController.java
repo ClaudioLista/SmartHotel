@@ -136,7 +136,7 @@ public class RegistrazioneController {
 	}
 
 	@RequestMapping("/Registrazione")
-	protected ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return doGet(request, response);
 	}
